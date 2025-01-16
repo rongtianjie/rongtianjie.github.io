@@ -1,0 +1,476 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>YOLO v1-v5 - Gridea</title>
+<link rel="shortcut icon" href="https://tech.rongtianjie.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://tech.rongtianjie.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://tech.rongtianjie.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="YOLO v1-v5 - Gridea - Atom Feed" href="https://tech.rongtianjie.me/atom.xml">
+
+    
+
+  <meta name="description" content="R-CNN
+R-CNN 算法流程
+
+
+输入图像
+使用 selective search 的传统聚类算法在每张图像上生成 1K ~ 2K 个候选区域
+对每个候选区域，使用深度网络提取特征 (AlextNet、VGG 等 CNN 都可以）
+将特..." />
+  <meta property="og:title" content="YOLO v1-v5 - Gridea">
+  <meta property="og:description" content="R-CNN
+R-CNN 算法流程
+
+
+输入图像
+使用 selective search 的传统聚类算法在每张图像上生成 1K ~ 2K 个候选区域
+对每个候选区域，使用深度网络提取特征 (AlextNet、VGG 等 CNN 都可以）
+将特..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://tech.rongtianjie.me/post/yolo-v1v2v3/" />
+  <meta property="og:image" content="https://tech.rongtianjie.me/post-images/yolo-v1v2v3.webp">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="YOLO v1-v5 - Gridea">
+  <meta name="twitter:description" content="R-CNN
+R-CNN 算法流程
+
+
+输入图像
+使用 selective search 的传统聚类算法在每张图像上生成 1K ~ 2K 个候选区域
+对每个候选区域，使用深度网络提取特征 (AlextNet、VGG 等 CNN 都可以）
+将特...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://tech.rongtianjie.me/post/yolo-v1v2v3/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://tech.rongtianjie.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://tech.rongtianjie.me" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Gridea
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          YOLO v1-v5
+        </h1>
+        
+          <img src="https://tech.rongtianjie.me/post-images/yolo-v1v2v3.webp" alt="YOLO v1-v5" class="block w-full mb-8">
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2022-11-14 · 10 min read</div>
+          
+            <a href="https://tech.rongtianjie.me/tag/QURh3Ra9G/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              ML
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="r-cnn">R-CNN</h2>
+<h3 id="r-cnn-算法流程">R-CNN 算法流程</h3>
+<figure data-type="image" tabindex="1"><img src="https://tech.rongtianjie.me/post-images/1668520506413.jpg" alt="" loading="lazy"></figure>
+<ol>
+<li>输入图像</li>
+<li>使用 <strong>selective search</strong> 的传统聚类算法在每张图像上生成 1K ~ 2K 个候选区域</li>
+<li>对每个候选区域，使用深度网络提取特征 (AlextNet、VGG 等 CNN 都可以）</li>
+<li>将特征送入每一类的 SVM 分类器 ， 判别是否属于该类</li>
+<li>使用回归器精细修正候选框位置</li>
+</ol>
+<h4 id="缺点">缺点</h4>
+<ul>
+<li>需要事先提取多个候选区域对应的图像，占用大量磁盘空间，且影响速度</li>
+<li>CNN 需要固定尺寸的输入，缩放图像时会造成图像变形影响精度</li>
+<li>没有使用 NMS，导致较多重复的特征提取</li>
+</ul>
+<h3 id="selective-search">Selective Search</h3>
+<p>用于目标检测的区域提议算法。通过图像的视觉结构（如颜色和纹理）将图像分成许多不同的部分，然后枚举这些部分的组合，找到最有可能包含目标的区域。先使用小尺度搜索，再合并特征相似的区域进行大尺度搜索。优点有：</p>
+<ul>
+<li>能够捕捉不同尺度</li>
+<li>多样化</li>
+<li>快速计算</li>
+</ul>
+<h3 id="fast-r-cnn">Fast R-CNN</h3>
+<p>将从原图选出聚类候选框的方法改成了从 CNN 层之后选出的<strong>特征图上聚类候选框</strong></p>
+<p><strong>ROI-Pooling</strong> - 把不同大小的输入映射到一个固定尺度的特征向量。将每个候选区域均匀分成 M×N 块，对每块进行 max-pooling。将特征图上大小不一的候选区域转变为大小统一的数据，送入下一层。</p>
+<h3 id="spp-net-空间金字塔池化">SPP-Net 空间金字塔池化</h3>
+<p>空间金字塔池化是一种图像降采样技术，常用于视觉识别和特征提取等任务中。基本思想是，将输入图像不断缩小，然后对每个尺度的图像进行特征提取。这样做的优点是：可以在保留图像的重要信息的同时，降低计算量和存储空间的需求；允许任意尺寸的输入，均能产生固定尺寸的输出；提高尺度不变性，减少过拟合。常见的空间金字塔池化方法有最大池化、平均池化和基于拉普拉斯金字塔的池化等。<br>
+<img src="https://tech.rongtianjie.me/post-images/1668591603141.jpg" alt="" loading="lazy"></p>
+<h3 id="faster-r-cnn">Faster R-CNN</h3>
+<figure data-type="image" tabindex="2"><img src="https://tech.rongtianjie.me/post-images/1668592673262.jpg" alt="" loading="lazy"></figure>
+<p>使用区域生成网络 (Region Proposal Network) 代替 Fast R-CNN 中费时的 Selective Search 方法。</p>
+<h4 id="rpn-region-proposal-network">RPN (Region Proposal Network)</h4>
+<h2 id="yolo-v1-you-only-look-once">YOLO-v1 (You Only Look Once)</h2>
+<figure data-type="image" tabindex="3"><img src="https://tech.rongtianjie.me/post-images/1668609128626.jpg" alt="" loading="lazy"></figure>
+<p>在YOLOv1中，它将整张图片输入后平均分为S×S个网格（grid cell），当某个目标的中心落在这个网格中，那么这个网格就负责预测它。对于 Faster-RCNN 需要训练一个RPN网络获得目标候选框区域，然后再映射到特征图上得到特征矩阵，这消耗了大量时间空间。</p>
+<ol>
+<li>输入图像分为 S×S 个网格，如果某个 object 的中心落在这个网格中，则这个网格就负责预测这个 object</li>
+<li>每个网格要预测 B 个bounding box，每个 bounding box 除了要回归自身的位置和一个值，即 (x, y, w, h) 和 confidence 共5个值。</li>
+<li>每个网格还要预测一个类别信息，记为 C 类。则SxS个网格，每个网格要预测 B 个 bounding box 还要预测 C 个 categories。总的输出就是 S × S × (5×B+C) 的张量</li>
+</ol>
+<p>在 YOLOv1 的 CVPR 2016 论文中，图片输入为 448×448 的像素，S图片划分网格量=7，B每个网格预测边框量=2，C类别个数=20。于是，网格输出=7×7×(5×2+20)</p>
+<h3 id="网络结构">网络结构</h3>
+<figure data-type="image" tabindex="4"><img src="https://tech.rongtianjie.me/post-images/1668610039721.jpg" alt="" loading="lazy"></figure>
+<ul>
+<li>网络输入：448×448×3的彩色图片。</li>
+<li>中间层：由若干卷积层和最大池化层组成，用于提取图片的抽象特征。</li>
+<li>全连接层：由两个全连接层组成，用来预测目标的位置和类别概率值。</li>
+<li>网络输出：7×7×30的预测结果。</li>
+</ul>
+<h3 id="损失函数">损失函数</h3>
+<figure data-type="image" tabindex="5"><img src="https://tech.rongtianjie.me/post-images/1668610563455.jpg" alt="" loading="lazy"></figure>
+<h2 id="yolo-v2">YOLO-v2</h2>
+<h3 id="提升点">提升点</h3>
+<ul>
+<li><strong>Batch Normalization</strong> 简称 BN 层，即批量标准化。在每一层卷积后，都增加了批量标准化进行预处理。BN 层能够对数据进行预处理，完成图像均衡化，解决反向传播的梯度消失/爆炸，去噪等功能，提升训练速度，并且起到一些正则化效果，可以移除 Dropout 层。</li>
+<li><strong>High Resolution Classifier</strong> YOLOv2采用更高分辨率的分类器，在采用 224×224 图像进行分类模型预训练后，再采用 448×448 高分辨率样本对分类模型进行微调（10 个 epoch），带来了4% 的 mAP 提升。</li>
+<li><strong>Convolution with Anchor Boxes</strong> 通使用基于 Anchor 的目标边界框的预测方式。采用基于 Anchor 偏移的预测比直接预测坐标而言更简单，也能使得网络更加容易学习和收敛。YOLOv2 移除了 YOLOv1 中的全连接层而采用了卷积和 anchor boxes 来预测边界框。为了使检测所用的特征图分辨率更高，移除其中的一个 pool 层。YOLOv2 使用了 Anchor boxes 之后，每个位置的各个 anchor box 都单独预测一套分类概率值。<br>
+YOLOv1: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>7</mn><mo>∗</mo><mn>7</mn><mo>∗</mo><mo>(</mo><mn>2</mn><mo>∗</mo><mn>5</mn><mo>+</mo><mn>20</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">7*7*(2*5+20)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mclose">)</span></span></span></span><br>
+YOLOv2: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>13</mn><mo>∗</mo><mn>13</mn><mo>∗</mo><mn>5</mn><mo>∗</mo><mo>(</mo><mn>5</mn><mo>+</mo><mn>20</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">13*13*5*(5+20)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mclose">)</span></span></span></span><br>
+<img src="https://tech.rongtianjie.me/post-images/1671610425053.png" alt="" loading="lazy"></li>
+<li><strong>Dimension Clusters</strong></li>
+<li><strong>Direct location prediction</strong></li>
+</ul>
+<h2 id="yolo-9000">YOLO 9000</h2>
+<p>YOLO9000 是在 YOLOv2 的基础上提出的一种可以检测超过 9000 个类别的模型，其主要贡献点在于提出了一种分类和检测的联合训练策略。<strong>在 YOLO 中，边界框的预测其实并不依赖于物体的标签，所以YOLO可以实现在分类和检测数据集上的联合训练</strong>。对于检测数据集，可以用来学习预测物体的边界框、置信度以及为物体分类，而对于分类数据集可以仅用来学习分类，但是其可以大大扩充模型所能检测的物体种类。</p>
+<h2 id="yolo-v3">YOLO-v3</h2>
+<ul>
+<li>更高的检测精度: YOLO v3使用了一种名为&quot;darknet-53&quot;的深度卷积神经网络模型，该模型在保持较快的速度的同时具有更高的检测精度。</li>
+<li>多尺度预测: YOLO v3使用多尺度预测的方法，可以检测出尺寸不同的目标。</li>
+<li>强化的边界框回归: YOLO v3在边界框回归方面进行了改进，可以更准确地预测目标的位置。</li>
+<li>支持不同分辨率的输入图像: YOLO v3可以接受各种分辨率的输入图像，这有助于检测出尺寸不同的目标。</li>
+<li>快速: YOLO v3在保持较高的检测精度的同时，运行速度较快。</li>
+</ul>
+<h2 id="yolo-v4v5">YOLO-v4v5</h2>
+<h3 id="网络结构对比">网络结构对比</h3>
+<figure data-type="image" tabindex="6"><img src="https://tech.rongtianjie.me/post-images/1669083858831.jpg" alt="YOLO-v3" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://tech.rongtianjie.me/post-images/1669084077924.jpg" alt="YOLO-v4" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://tech.rongtianjie.me/post-images/1669085781302.jpg" alt="YOLO-v5" loading="lazy"></figure>
+<h3 id="损失设计">损失设计</h3>
+<h4 id="giou_loss"><strong>GIOU_Loss</strong></h4>
+<p>GIOU (Generalized Intersection over Union) 在 IoU 的基础上引入了更复杂的几何计算，增加了一个项，这个项考虑了预测边界框和真实边界框的最小闭合矩形的面积。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mi>I</mi><mi>O</mi><mi>U</mi><mo>=</mo><mi>I</mi><mi>o</mi><mi>U</mi><mo>−</mo><mfrac><mrow><mi>A</mi><mi>r</mi><mi>e</mi><mi>a</mi><mtext> </mtext><mi>o</mi><mi>f</mi><mtext> </mtext><mi>s</mi><mi>m</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>e</mi><mi>s</mi><mi>t</mi><mtext> </mtext><mi>e</mi><mi>n</mi><mi>c</mi><mi>l</mi><mi>o</mi><mi>s</mi><mi>i</mi><mi>n</mi><mi>g</mi><mtext> </mtext><mi>b</mi><mi>o</mi><mi>x</mi><mo>−</mo><mi>U</mi><mi>n</mi><mi>i</mi><mi>o</mi><mi>n</mi><mtext> </mtext><mi>a</mi><mi>r</mi><mi>e</mi><mi>a</mi></mrow><mrow><mi>A</mi><mi>r</mi><mi>e</mi><mi>a</mi><mtext> </mtext><mi>o</mi><mi>f</mi><mtext> </mtext><mi>s</mi><mi>m</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>e</mi><mi>s</mi><mi>t</mi><mtext> </mtext><mi>e</mi><mi>n</mi><mi>c</mi><mi>l</mi><mi>o</mi><mi>s</mi><mi>i</mi><mi>n</mi><mi>g</mi><mtext> </mtext><mi>b</mi><mi>o</mi><mi>x</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">GIOU = IoU - \frac{Area \, of \, smallest \, enclosing \, box - Union \, area}{Area \, of \, smallest \, enclosing \, box}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.4133239999999998em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">A</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">t</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">b</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">x</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">A</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">t</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">b</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">x</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">U</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">n</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>在这个公式中，第一项是 IoU，第二项则是用最小闭合矩形的面积减去并集面积，然后除以最小闭合矩形的面积。这个额外的项可以在两个边界框没有重叠的情况下，提供有意义的梯度，从而帮助模型学习如何改进预测。</p>
+<h4 id="diou_loss"><strong>DIOU_Loss</strong></h4>
+<p>DIOU (Distance-IoU) Loss 是一种用于目标检测任务中的损失函数，它在计算目标框（bounding box）之间的损失时，除了考虑传统的 IOU（Intersection over Union，交并比）之外，还加入了中心点距离的考量。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mi>I</mi><mi>O</mi><mi>U</mi><mo>=</mo><mi>I</mi><mi>O</mi><mi>U</mi><mo>−</mo><mfrac><msup><mi>ρ</mi><mn>2</mn></msup><msup><mi>c</mi><mn>2</mn></msup></mfrac></mrow><annotation encoding="application/x-tex">DIOU = IOU - \frac{ρ^2}{c^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.415028em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.070028em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">ρ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>其中，ρ 是预测框和真实框中心点的欧氏距离，c 是包含两个框的最小闭合矩形的对角线长度。这样，当两个框的中心点距离变小，DIOU 的值会增大，表示两个框的相似度更高。反之，当中心点距离变大，DIOU 的值会变小，表示两个框的相似度更低。</p>
+<h4 id="ciou_loss"><strong>CIOU_Loss</strong></h4>
+<p>Complete Intersection over Union Loss</p>
+<ul>
+<li>形状差异：CIOU Loss 计算了预测框和真实框之间的形状差异。即使两个框的 IOU 相同，形状差异的存在也可能导致检测的准确性降低。</li>
+<li>中心点距离：CIOU Loss 还会考虑预测框和真实框中心点之间的距离。如果两个框的中心点距离较远，即使它们的 IOU 较高，也可能导致检测结果的准确性降低。</li>
+<li>面积比例：CIOU Loss 还考虑了预测框和真实框的面积比例。如果预测框和真实框的面积比例偏差较大，可能导致检测结果的准确性降低。</li>
+</ul>
+<h3 id="数据增强">数据增强</h3>
+<h4 id="几何变换">几何变换</h4>
+<ul>
+<li>随机缩放</li>
+<li>裁剪</li>
+<li>翻转</li>
+<li>旋转</li>
+<li>平移</li>
+</ul>
+<h4 id="光照变换">光照变换</h4>
+<ul>
+<li>随机亮度</li>
+<li>对比度</li>
+<li>色彩度</li>
+<li>饱和度</li>
+<li>噪声</li>
+</ul>
+<h4 id="遮挡变换">遮挡变换</h4>
+<ul>
+<li><strong>Random erase</strong> 随机删除 ， 在图上随机遮挡某一部分的像素 。</li>
+<li><strong>Cutout</strong> 裁剪 ， 按照一定的间隔遮挡 N × N 像素大小的小格子，是具有规律的，一般是等距间隔的小格子，N 一般取2或4很小的值，类似于给图片加噪声。</li>
+<li><strong>Hide and seek</strong> 裁剪，按照更大的间隔遮挡 N × N 像素大小的小格子，是具有规律的，一般是等距间隔的小格子，N 一般取值更大一些。</li>
+<li><strong>Grid Mask</strong> 网格掩码，YOLOV4 中的遮挡是有策略的遮挡，而非随机遮挡，采用的方法是先把图像进行分成不同的格子，然后按照一定的方法去挑选遮挡某些格子，尽量不去遮挡目标。遮挡的效果取决于格<br>
+子的大小和被遮挡的格子数量。类似于增加正样本的权重 (YOLO 图像中一般背景面积较大)。</li>
+</ul>
+<h2 id="课件">课件</h2>
+<h3 id="yolo-v1v2v3">YOLO v1v2v3</h3>
+<figure data-type="image" tabindex="9"><img src="https://tech.rongtianjie.me/post-images/1690706272916.jpg" alt="" loading="lazy"></figure>
+<h3 id="yolo-v4v5-2">YOLO v4v5</h3>
+<figure data-type="image" tabindex="10"><img src="https://tech.rongtianjie.me/post-images/1690706298074.jpg" alt="" loading="lazy"></figure>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#r-cnn">R-CNN</a>
+<ul>
+<li><a href="#r-cnn-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B">R-CNN 算法流程</a>
+<ul>
+<li><a href="#%E7%BC%BA%E7%82%B9">缺点</a></li>
+</ul>
+</li>
+<li><a href="#selective-search">Selective Search</a></li>
+<li><a href="#fast-r-cnn">Fast R-CNN</a></li>
+<li><a href="#spp-net-%E7%A9%BA%E9%97%B4%E9%87%91%E5%AD%97%E5%A1%94%E6%B1%A0%E5%8C%96">SPP-Net 空间金字塔池化</a></li>
+<li><a href="#faster-r-cnn">Faster R-CNN</a>
+<ul>
+<li><a href="#rpn-region-proposal-network">RPN (Region Proposal Network)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#yolo-v1-you-only-look-once">YOLO-v1 (You Only Look Once)</a>
+<ul>
+<li><a href="#%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84">网络结构</a></li>
+<li><a href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0">损失函数</a></li>
+</ul>
+</li>
+<li><a href="#yolo-v2">YOLO-v2</a>
+<ul>
+<li><a href="#%E6%8F%90%E5%8D%87%E7%82%B9">提升点</a></li>
+</ul>
+</li>
+<li><a href="#yolo-9000">YOLO 9000</a></li>
+<li><a href="#yolo-v3">YOLO-v3</a></li>
+<li><a href="#yolo-v4v5">YOLO-v4v5</a>
+<ul>
+<li><a href="#%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94">网络结构对比</a></li>
+<li><a href="#%E6%8D%9F%E5%A4%B1%E8%AE%BE%E8%AE%A1">损失设计</a>
+<ul>
+<li><a href="#giou_loss"><strong>GIOU_Loss</strong></a></li>
+<li><a href="#diou_loss"><strong>DIOU_Loss</strong></a></li>
+<li><a href="#ciou_loss"><strong>CIOU_Loss</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA">数据增强</a>
+<ul>
+<li><a href="#%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2">几何变换</a></li>
+<li><a href="#%E5%85%89%E7%85%A7%E5%8F%98%E6%8D%A2">光照变换</a></li>
+<li><a href="#%E9%81%AE%E6%8C%A1%E5%8F%98%E6%8D%A2">遮挡变换</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E8%AF%BE%E4%BB%B6">课件</a>
+<ul>
+<li><a href="#yolo-v1v2v3">YOLO v1v2v3</a></li>
+<li><a href="#yolo-v4v5-2">YOLO v4v5</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://tech.rongtianjie.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://tech.rongtianjie.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+  
+</body>
+
+</html>

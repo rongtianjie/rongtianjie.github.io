@@ -1,0 +1,438 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Install Google Service Framework on Windows 11 WSA - Gridea</title>
+<link rel="shortcut icon" href="https://tech.rongtianjie.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://tech.rongtianjie.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://tech.rongtianjie.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Install Google Service Framework on Windows 11 WSA - Gridea - Atom Feed" href="https://tech.rongtianjie.me/atom.xml">
+
+    
+
+  <meta name="description" content="
+Windows Subsystem for AndroidTM (WSA) is one of the new features of Windows 11. It enables Windows 11 devices to run An..." />
+  <meta property="og:title" content="Install Google Service Framework on Windows 11 WSA - Gridea">
+  <meta property="og:description" content="
+Windows Subsystem for AndroidTM (WSA) is one of the new features of Windows 11. It enables Windows 11 devices to run An..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://tech.rongtianjie.me/post/install_gsf_on_wsa/" />
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220210/WSA-GApp.7xgohlu0wgw.webp">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="Install Google Service Framework on Windows 11 WSA - Gridea">
+  <meta name="twitter:description" content="
+Windows Subsystem for AndroidTM (WSA) is one of the new features of Windows 11. It enables Windows 11 devices to run An...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://tech.rongtianjie.me/post/install_gsf_on_wsa/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://tech.rongtianjie.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://tech.rongtianjie.me" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Gridea
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          Install Google Service Framework on Windows 11 WSA
+        </h1>
+        
+          <img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220210/WSA-GApp.7xgohlu0wgw.webp" alt="Install Google Service Framework on Windows 11 WSA" class="block w-full mb-8">
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2022-02-09 · 7 min read</div>
+          
+            <a href="https://tech.rongtianjie.me/tag/stlaCjNAi/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              WSA
+            </a>
+          
+            <a href="https://tech.rongtianjie.me/tag/kgHqxlsJDJ/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              PC
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <!-- more -->
+<p>Windows Subsystem for Android<sup>TM</sup> (WSA) is one of the new features of Windows 11. It enables Windows 11 devices to run Android application in a virtual way. Microsoft only allows you to install apps from Amazon App Store which means your choices are very limited. In Addition, the WSA doesn't enquipped with Google Services Framework (GSF) so Google Apps such as YouTube cannot run properly on WSA even if installed with sideload.</p>
+<p>Thanks for WSA-Community, there is a <a href="https://github.com/WSA-Community/WSAGAScript">repository</a> on Github that can do modifications on the WSA install package to add GSF support. This tutorial helps you install Google Service Framework as well as Google Play Store to the WSA on Windows 11.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Windows 11 (version higher than 22000.xxx series)</li>
+<li>Windows Subsystem for Linux (Version 2)</li>
+<li>7-Zip or any other extraction software</li>
+<li>OpenGApps</li>
+<li>WSAGAScript</li>
+<li>Android Debugging Bridge (ADB)</li>
+</ul>
+<h2 id="installing-windows-subsystem-for-linux-2">Installing Windows Subsystem for Linux 2</h2>
+<h3 id="install-steps">Install steps:</h3>
+<ul>
+<li>Open Windows PowerShell as an Administrator</li>
+<li>Run <code>wsl --install</code>: this will install Ubuntu 20.04 LTS in WSL (Version 2) and all necessary components required to run as it is default (this is recommended)</li>
+<li>Check with <code>wsl --list --verbose</code> to be sure that you have a Linux Distro installed with WSL2 version. If for some reason you have receieved WSL1 kernel (or you have trouble running this command in general) - follow instructions in the section below to perform conversion.<br>
+<a href="https://docs.microsoft.com/en-us/windows/wsl/install">Microsoft Docs: Installing WSL</a></li>
+</ul>
+<h3 id="what-if-i-already-installed-wsl-version-1">What if I already installed WSL (version 1)</h3>
+<p><a href="https://docs.microsoft.com/en-us/windows/wsl/install-manual">Microsoft Docs: Manual installation steps for older versions of WSL</a></p>
+<h2 id="enable-developer-mode-on-windows-11">Enable Developer Mode on Windows 11</h2>
+<p>Developer Mode allows you to install applications on your computer from any source. Follow the instructions to enable it:</p>
+<ol>
+<li>Open the <strong>Windows Settings</strong> app. <img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220210/Snipaste_2022-02-10_15-10-37.71l3tth3mx40.webp" alt="Snipaste_2022-02-10_15-10-37" loading="lazy"></li>
+<li>Navigate to <strong>Privacy and Security</strong> on the left side panel. <img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220210/Snipaste_2022-02-10_15-11-18.2rxasyh3zu00.webp" alt="Snipaste_2022-02-10_15-11-18" loading="lazy"></li>
+<li>Click on the <strong>For developers</strong> option on the right. <img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220210/Snipaste_2022-02-10_15-11-56.7cnosgr10v00.webp" alt="Snipaste_2022-02-10_15-11-56" loading="lazy"></li>
+<li>Enable the <strong>Developer Mode</strong> by click on the toggle. <img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220210/Snipaste_2022-02-10_15-12-34.1dhiwy053jds.webp" alt="Snipaste_2022-02-10_15-12-34" loading="lazy"></li>
+</ol>
+<h2 id="downloading-windows-subsystem-for-android">Downloading Windows Subsystem for Android</h2>
+<p>As mentioned before, we have to do modifications on the Windows Subsystem for Android. To do this, you have to first download the WSA package.</p>
+<ol>
+<li>Head to <strong>rg.adguard</strong> by click <a href="http://store.rg-adguard.net/">this link</a>
+<blockquote>
+<p>If you have any problem when download any source in this tutorial, I created a <a href="https://drive.google.com/drive/folders/1UZpGtzDw-t6VprPrdDqCgECYipkYb6uL?usp=sharing">google drive share link</a> which contains all the download files required.</p>
+</blockquote>
+</li>
+<li>Choose <strong>ProductId</strong> from the drop-down menu on the left. <img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220210/Snipaste_2022-02-10_15-38-23.1mmaok8trdr4.webp" alt="Snipaste_2022-02-10_15-38-23" loading="lazy"></li>
+<li>Copy and paste <code>9P3395VX91NR</code> in the search box.</li>
+<li>Choose <strong>Slow</strong> from the drop-down menu on the right and click the <strong>tick</strong> button. <img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220210/Snipaste_2022-02-10_15-38-43.79tvkebsts40.webp" alt="Snipaste_2022-02-10_15-38-43" loading="lazy"></li>
+<li>Scroll down and look for the <code>MicrosoftCorporationII.WindowsSubsystemForAndroid_x.x.xxxxx.0_neutral_~_8wekyb3d8bbwe.msixbundle</code>. The file size is about 1.2G. Click on the filename to download the WSA package. <img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220210/Snipaste_2022-02-10_15-45-06.2x18b809tuw0.webp" alt="Snipaste_2022-02-10_15-45-06" loading="lazy"></li>
+</ol>
+<h2 id="download-open-gapps">Download Open GApps</h2>
+<p>Head to the Open GAPPS <a href="https://opengapps.org/">website</a> to download the Open Gapps tool.</p>
+<ul>
+<li>Platform: x86_64</li>
+<li>Android: 11.0</li>
+<li>Variant: pico</li>
+</ul>
+<p>Then click on the red button to download.<br>
+<img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220210/Snipaste_2022-02-10_16-38-16.2v7fl00q12o.webp" alt="Snipaste_2022-02-10_16-38-16" loading="lazy"></p>
+<h2 id="download-wsagascript">Download WSAGAScript</h2>
+<p>Download the WSAGAScript from the github page <a href="https://github.com/WSA-Community/WSAGAScript">repository</a>.<br>
+<img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220211/Snipaste_2022-02-11_10-26-58.q92nisebha8.webp" alt="Snipaste_2022-02-11_10-26-58" loading="lazy"><br>
+Click on the green button <strong>Code</strong> and select <strong>Download ZIP</strong> in the drop-down menu.</p>
+<h2 id="download-android-debugging-bridge-toolkit">Download Android Debugging Bridge Toolkit</h2>
+<p>The last thing you have to download is the Android Debugging Bridge Toolkit (ADB). Simply click this <a href="https://drive.google.com/file/d/1QtMIZ8sQ_kl45-qId3ytK4mvKPuIZxps/view?usp=sharing">link</a> and download the .zip file.</p>
+<h2 id="modification-installation-procedure">Modification &amp; Installation Procedure</h2>
+<h3 id="create-required-folders">Create Required Folders</h3>
+<p>Create 3 folders under the root path of your system partition which is usually the C:\ drive. Then, rename them as <code>WindowsSubsystemAndroid</code>, <code>GAppsWSA</code> and <code>ADBKit</code>.</p>
+<h3 id="prepare-required-files">Prepare Required Files</h3>
+<ul>
+<li>Open the Windows Subsystem for Android package (.Msixbundle file) with a file archiver (Recommend: <a href="https://www.7-zip.org/">7-Zip</a>). Find the <strong>Wsa-Package-[version]-Release-Nightly.msix</strong> package and extract all the files in it to <code>C:\WindowsSubsystemAndroid\</code>. Then, delete the <code>AppxMetadata</code>, <code>AppxBlockMap.xml</code>, <code>AppxSignature.p7x</code>, and <code>[Content_Type].xml</code>.</li>
+<li>Extract files under <code>WSAGAScript-main.zip\WSAGAScript-main\</code> to <code>C:\GAppsWSA\</code>.</li>
+<li>Move the <strong>open_gapps-x86_64-11.0-pico-xxxxxxxx.zip</strong> file to <code>C:\GAppsWSA\#GAPPS\</code></li>
+<li>Copy the <strong>product.img</strong>, <strong>vendor.img</strong>, <strong>system_ext.img</strong> and <strong>system.img</strong> under <code>C:\WindowsSubsystemAndroid\</code> to <code>C:\GAppsWSA\#IMAGES\</code> folder.</li>
+<li>Extract files in <strong>ADBKit.zip</strong> to <code>C:\ADBKit\</code></li>
+</ul>
+<h3 id="modify-windows-subsystem-for-android">Modify Windows Subsystem for Android</h3>
+<p>Now we are ready to modify the original Windows Subsystem for Android to equipped with Google Service Framework and Google Apps. In this step, we need to use the WSL to do the modification.</p>
+<ol>
+<li>Run the WSL as administrator. (Right click on the icon and choose <strong>Run as administrator</strong>. The tutorial will use <strong>Ubuntu 20.04 LTS</strong> as example) <img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220211/Snipaste_2022-02-11_14-27-20.n4q595odhgg.webp" alt="Snipaste_2022-02-11_14-27-20" loading="lazy"></li>
+<li>Execute  <code>sudo su</code> in the WSL terminal and provide the root password to obtain root privilege. The <strong>$</strong> in the prompt should turn into <strong>#</strong>.</li>
+<li>Change the current path to <strong>GAppsWSA</strong>.<pre><code class="language-bash">cd /mnt/c/GAppsWSA
+</code></pre>
+</li>
+<li>Update the package lists.<pre><code class="language-bash">apt update
+</code></pre>
+</li>
+<li>Install <strong>unzip</strong> and <strong>lzip</strong> tools.<pre><code class="language-bash">apt install unzip lzip
+</code></pre>
+</li>
+<li>Install <strong>dos2unix</strong> tool.<pre><code class="language-bash">apt install dos2unix
+</code></pre>
+</li>
+<li>Execute the following commands line by line to convert the respective scripts to UNIX format.<pre><code class="language-bash">dos2unix ./apply.sh
+dos2unix ./extend_and_mount_images.sh
+dos2unix ./extract_gapps_pico.sh
+dos2unix ./unmount_images.sh
+dos2unix ./VARIABLES.sh
+</code></pre>
+</li>
+<li>Execute the converted scripts one by one.<pre><code class="language-bash">./extract_gapps_pico.sh
+./extend_and_mount_images.sh
+./apply.sh 
+./unmount_images.sh
+</code></pre>
+</li>
+</ol>
+<p>Now you have modified the <strong>.img</strong> files. Do the following steps to complete the modification on the WSA:</p>
+<ul>
+<li>Copy the 4 <strong>.img</strong> files under the <code>C:\GAppsWSA\#IMAGES\</code> to <code>C:\WindowsSubsystemAndroid\</code> and replace the origianl <strong>.img</strong> files.</li>
+<li>Copy the kernel file <strong>kernel-x86_64</strong> under <code>C:\GAppsWSA\misc\</code> to <code>C:\WindowsSubsystemAndroid\Tools</code>.</li>
+<li>Rename the <strong>kernel</strong> file under <code>C:\WindowsSubsystemAndroid\Tools</code> to <strong>kernel_bak</strong>.</li>
+<li>Rename the <strong>kernel-x86_64</strong> file under <code>C:\WindowsSubsystemAndroid\Tools</code> to <strong>kernel</strong>.</li>
+</ul>
+<h3 id="install-modified-version-of-windows-subsystem-for-android">Install Modified Version of Windows Subsystem for Android</h3>
+<p>Now we have finished the modification on the Windows Subsystem for Android. Then comes to install the WSA with terminal command:</p>
+<ul>
+<li>Open the Powershell / Windows Terminal as Administrator.</li>
+<li>Execute the following command to install the modified Windows Subsystem for Android:<pre><code class="language-bash">Add-AppxPackage -Register C:\WindowsSubsystemAndroid\AppxManifest.xml
+</code></pre>
+</li>
+<li>Once the progress bar finished, Windows Subsystem for Android with Google Service Framework should be successfully installed on your computer.</li>
+</ul>
+<h3 id="set-up-google-play-store-on-windows-subsystem-for-android">Set up Google Play Store on Windows Subsystem for Android</h3>
+<ol>
+<li>Open up the Start Menu and search for <strong>Windows Subsystem for Android</strong> and open it up.</li>
+<li>In the popped up window, turn on the <strong>Developer mode</strong> by click on the toggle switch. <img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220214/Snipaste_2022-02-14_16-09-35.5eiz152auh00.webp" alt="Snipaste_2022-02-14_16-09-35" loading="lazy"></li>
+<li>After that, click on the <strong>Manage developer settings</strong> and make sure uncheck the <strong>Share my diagnostic data</strong> check box. Then, click the <strong>Continue</strong> button.</li>
+<li>In the Powershell / Windows Terminal (Administrator), type the following command to navigate to the <strong>ADBKit</strong> directory:<pre><code class="language-bash">cd C:\ADBKit
+</code></pre>
+</li>
+<li>Connect to the Windows Subsystem for Android with ADB:<pre><code class="language-bash">.\adb.exe connect 127.0.0.1:58526
+</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220214/Snipaste_2022-02-14_16-26-25.4ub4ktv59iu0.webp" alt="Snipaste_2022-02-14_16-26-25" loading="lazy"></li>
+<li>Once have connected, type the follow commands to make the Google Play Store work:<pre><code class="language-bash">.\adb.exe shell
+su
+setenforce 0 
+</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/rongtianjie/image_hosting@main/20220214/Snipaste_2022-02-14_16-33-19.76d4fcua8w00.webp" alt="Snipaste_2022-02-14_16-33-19" loading="lazy"></li>
+<li>Now you should be able to find <strong>Play Store</strong> in the start menu. Sign in your google account and enjoy yourself : )</li>
+</ol>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#installing-windows-subsystem-for-linux-2">Installing Windows Subsystem for Linux 2</a>
+<ul>
+<li><a href="#install-steps">Install steps:</a></li>
+<li><a href="#what-if-i-already-installed-wsl-version-1">What if I already installed WSL (version 1)</a></li>
+</ul>
+</li>
+<li><a href="#enable-developer-mode-on-windows-11">Enable Developer Mode on Windows 11</a></li>
+<li><a href="#downloading-windows-subsystem-for-android">Downloading Windows Subsystem for Android</a></li>
+<li><a href="#download-open-gapps">Download Open GApps</a></li>
+<li><a href="#download-wsagascript">Download WSAGAScript</a></li>
+<li><a href="#download-android-debugging-bridge-toolkit">Download Android Debugging Bridge Toolkit</a></li>
+<li><a href="#modification-installation-procedure">Modification &amp; Installation Procedure</a>
+<ul>
+<li><a href="#create-required-folders">Create Required Folders</a></li>
+<li><a href="#prepare-required-files">Prepare Required Files</a></li>
+<li><a href="#modify-windows-subsystem-for-android">Modify Windows Subsystem for Android</a></li>
+<li><a href="#install-modified-version-of-windows-subsystem-for-android">Install Modified Version of Windows Subsystem for Android</a></li>
+<li><a href="#set-up-google-play-store-on-windows-subsystem-for-android">Set up Google Play Store on Windows Subsystem for Android</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://tech.rongtianjie.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://tech.rongtianjie.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+  
+</body>
+
+</html>

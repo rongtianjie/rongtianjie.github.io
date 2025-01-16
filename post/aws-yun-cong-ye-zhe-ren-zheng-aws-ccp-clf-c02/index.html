@@ -1,0 +1,557 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>AWS云从业者认证 AWS CCP CLF-C02 - Gridea</title>
+<link rel="shortcut icon" href="https://tech.rongtianjie.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://tech.rongtianjie.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://tech.rongtianjie.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="AWS云从业者认证 AWS CCP CLF-C02 - Gridea - Atom Feed" href="https://tech.rongtianjie.me/atom.xml">
+
+    
+
+  <meta name="description" content="知识点
+传统服务器的弊端
+
+服务器一次性投入成本大
+安装调试复杂，需要长时间投入
+部署在一个地区，容易受到损坏
+无法弹性扩缩容
+
+云计算优势
+
+按量购买，一次性投入成本低
+安装调试由云厂商提供
+多地域部署购买
+可以弹性扩缩容
+
+概念知识
+
+..." />
+  <meta property="og:title" content="AWS云从业者认证 AWS CCP CLF-C02 - Gridea">
+  <meta property="og:description" content="知识点
+传统服务器的弊端
+
+服务器一次性投入成本大
+安装调试复杂，需要长时间投入
+部署在一个地区，容易受到损坏
+无法弹性扩缩容
+
+云计算优势
+
+按量购买，一次性投入成本低
+安装调试由云厂商提供
+多地域部署购买
+可以弹性扩缩容
+
+概念知识
+
+..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://tech.rongtianjie.me/post/aws-yun-cong-ye-zhe-ren-zheng-aws-ccp-clf-c02/" />
+  <meta property="og:image" content="https://tech.rongtianjie.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="AWS云从业者认证 AWS CCP CLF-C02 - Gridea">
+  <meta name="twitter:description" content="知识点
+传统服务器的弊端
+
+服务器一次性投入成本大
+安装调试复杂，需要长时间投入
+部署在一个地区，容易受到损坏
+无法弹性扩缩容
+
+云计算优势
+
+按量购买，一次性投入成本低
+安装调试由云厂商提供
+多地域部署购买
+可以弹性扩缩容
+
+概念知识
+
+...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://tech.rongtianjie.me/post/aws-yun-cong-ye-zhe-ren-zheng-aws-ccp-clf-c02/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://tech.rongtianjie.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://tech.rongtianjie.me" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Gridea
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          AWS云从业者认证 AWS CCP CLF-C02
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2024-12-12 · 8 min read</div>
+          
+            <a href="https://tech.rongtianjie.me/tag/hBuNXXUxIg/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              AWS
+            </a>
+          
+            <a href="https://tech.rongtianjie.me/tag/csaco4k5_uR/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              certification
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h1 id="知识点">知识点</h1>
+<h3 id="传统服务器的弊端">传统服务器的弊端</h3>
+<ul>
+<li>服务器一次性投入成本大</li>
+<li>安装调试复杂，需要长时间投入</li>
+<li>部署在一个地区，容易受到损坏</li>
+<li>无法弹性扩缩容</li>
+</ul>
+<h3 id="云计算优势">云计算优势</h3>
+<ul>
+<li>按量购买，一次性投入成本低</li>
+<li>安装调试由云厂商提供</li>
+<li>多地域部署购买</li>
+<li>可以弹性扩缩容</li>
+</ul>
+<h3 id="概念知识">概念知识</h3>
+<ul>
+<li>Region - available zone - datacenter</li>
+</ul>
+<h3 id="云种类">云种类</h3>
+<ul>
+<li>公有云</li>
+<li>私有云</li>
+<li>混合云</li>
+</ul>
+<h3 id="云服务模式">云服务模式</h3>
+<ul>
+<li>IaaS - 基础设施即服务</li>
+<li>PaaS - 平台即服务</li>
+<li>SaaS - 软件即服务</li>
+</ul>
+<h3 id="服务种类">服务种类</h3>
+<ul>
+<li>计算</li>
+<li>存储</li>
+<li>网络</li>
+<li>数据库</li>
+<li>其他：身份验证、监控、审计、安全合规等</li>
+</ul>
+<h3 id="付费模式">付费模式</h3>
+<p>Pay as you go - 按需付费</p>
+<h3 id="capex-vs-opex">CAPEX vs OPEX</h3>
+<ul>
+<li><strong>CAPEX 资本性支出</strong> 指能够为企业提供长期价值的资产投资</li>
+<li><strong>OPEX 经营性支出</strong> 指支持企业展开日常运营的短期费用支出</li>
+<li></li>
+</ul>
+<h3 id="云采用框架-caf-cloud-adoption-framework">云采用框架 CAF - Cloud Adoption Framework</h3>
+<p>是一种利用最佳实践才让企业实现云转型的重要实践指导</p>
+<ul>
+<li>业务 Business</li>
+<li>人员 People</li>
+<li>治理 Governance</li>
+<li>平台 Platform</li>
+<li>安全 Security</li>
+<li>运营 Operation</li>
+</ul>
+<h3 id="良好架构框架-waf-well-architected-framework">良好架构框架 WAF - well-architected framework</h3>
+<ul>
+<li>可靠性 Reliability</li>
+<li>安全性 Security</li>
+<li>性能效率 Performance Efficiency</li>
+<li>成本优化 Cost Optimization</li>
+<li>卓越运营 Operation Excellence</li>
+<li>可持续性 Sustainability</li>
+</ul>
+<h3 id="aws-ec2">AWS EC2</h3>
+<ul>
+<li>弹性计算服务</li>
+<li>可根据需求进行弹性扩展和收缩</li>
+</ul>
+<h4 id="付费模式-2">付费模式</h4>
+<ul>
+<li>On-Demand Instance - 按需实例</li>
+<li>Reserved Instance - 预留实例（预留实例与AZ和实例型号绑定）</li>
+<li>Spot Instance - 竞价实例（折扣售卖和系统中断机制）</li>
+<li>Savings Plan - 节省计划（不考虑实例系列、大小、操作系统、租赁或 AWS 区域）</li>
+</ul>
+<h3 id="auto-scaling">Auto Scaling</h3>
+<p>根据应用程序的需求，自动调整 AWS 资源的容量，以应对流量的变化，并确保应用程序的性能和可用性，同时最大程度的降低成本。<br>
+<strong>针对服务</strong></p>
+<ul>
+<li>Amazon EC2</li>
+<li>Spot 队列</li>
+<li>Amazon ECS</li>
+<li>Amazon DynamoDB 表和索引</li>
+<li>Amazon Aurora 副本</li>
+</ul>
+<h3 id="amazon-lightsail">Amazon LightSail</h3>
+<p>一种简化的虚拟私有服务器服务，旨在帮助开发人员快速、轻松的搭建和管理虚拟服务器。</p>
+<ul>
+<li>简配 EC2</li>
+<li>提供模板</li>
+</ul>
+<h3 id="amazon-elastic-beanstalk">Amazon Elastic Beanstalk</h3>
+<p>是一项用于简化应用程序部署和管理的托管服务，它允许开发人员上传他们的应用程序代码，并自动处理底层的部署、扩展、负载均衡和监控任务, 从而使开发人员能够专注于应用程序的开发，而不必担心基础架构的管理细节。<br>
+支持 Go、Java、.NET、Node.js、PHP、Python、Ruby 中开发的应用程序。</p>
+<h3 id="amazon-lambda">Amazon Lambda</h3>
+<p>是一种无服务器计算服务，它允许开发人员在无需管理服务器或处理基础设施的情况下运行代码。<br>
+最长执行时间：15 分钟</p>
+<h3 id="aws-batch">AWS Batch</h3>
+<p>一项批量计算服务，旨在帮助用户高效的处理大规模的计算工作负载。可以自动调度运行和监控批处理作业，以提高计算效率和成本效益。</p>
+<h3 id="amazon-elastic-block-store-amazon-ebs">Amazon Elastic Block Store (Amazon EBS)</h3>
+<p>是一种持久性块存储服务，可供 EC2 实例使用。它提供了可通过网络连接到 EC2 实例的持久性块存储，可以在实例之间移动，从而为用户提供了在云端运行的持久性块存储解决方案。</p>
+<h3 id="amazon-elastic-file-system-amazon-efs">Amazon Elastic File System (Amazon EFS)</h3>
+<p>亚马逊提供的一种托管文件存储服务，可在多个 EC2 实例之间提供可扩展的、高性能的文件共享服务。</p>
+<h3 id="amazon-fsx">Amazon FSx</h3>
+<p>是一种高性能、可扩展的文件系统服务，可用于在 AWS 云中运行应用程序。适用于需要低延迟和高吞吐量的工作负载，如大规模数据分析、高性能计算等。</p>
+<h3 id="amazon-s3">Amazon S3</h3>
+<p>是一种对象存储服务，可用于存储和检索任意类型的数据，包括文本、图像、视频、音频等。</p>
+<h3 id="amazon-s3-glacier">Amazon S3 Glacier</h3>
+<p>是一种低成本、高可靠性的对象存储服务，适用于需要长期存储数据的企业和组织。</p>
+<ul>
+<li>Instant Retrieval - 即时检索</li>
+<li>Flexible Retrieval - 灵活检索</li>
+<li>Deep Archive - 深度存档</li>
+</ul>
+<h3 id="amazon-storage-gateway">Amazon Storage Gateway</h3>
+<p>是一种数据传输服务，可将数据从本地数据中心传输到 AWS 云存储服务，如 Amazon S3、Amazon Glacier 等。</p>
+<h3 id="amazon-backup">Amazon Backup</h3>
+<p>是一项数据备份和恢复服务（云上），可帮助用户保护数据免受硬件故障、软件错误和人为错误的影响。</p>
+<h3 id="amazon-rds">Amazon RDS</h3>
+<p>Relational Database Sercice(RDS) 是一种关系型数据库服务，可用于存储和管理结构化数据。</p>
+<h3 id="amazon-aurora">Amazon Aurora</h3>
+<p>亚马逊自研提供的一种高性能、高可用的关系型数据库服务，兼容 MySQL 和 PostgreSQL 协议。</p>
+<h3 id="amazon-dynamodb">Amazon DynamoDB</h3>
+<p>是一种 NoSQL 数据库服务，适用于需要高性能、可扩展的应用程序。</p>
+<h3 id="amazon-memorydb-for-redis">Amazon MemoryDB for Redis</h3>
+<p>是一种内存数据库服务，适用于需要高性能、可扩展的应用程序。</p>
+<h3 id="amazon-elastic-container-service-amazon-ecs">Amazon Elastic Container Service (Amazon ECS)</h3>
+<p>是一种容器服务，可帮助用户部署、管理和运行容器化应用程序。</p>
+<h3 id="amazon-elastic-kubernetes-service-amazon-eks">Amazon Elastic Kubernetes Service (Amazon EKS)</h3>
+<h3 id="amazon-elastic-container-registry-amazon-ecr">Amazon Elastic Container Registry (Amazon ECR)</h3>
+<h3 id="amazon-fargate">Amazon Fargate</h3>
+<p>适用于容器的无服务器计算服务，可帮助用户运行容器化应用程序，无需管理服务器或处理基础设施。</p>
+<h3 id="aws-application-migration-service">AWS Application Migration Service</h3>
+<h3 id="aws-database-migration-service-dms">AWS Database Migration Service (DMS)</h3>
+<h3 id="aws-vpc">AWS VPC</h3>
+<p>Amazon Virtual Private Cloud (VPC) 是一种虚拟网络服务，可帮助用户在 AWS 云中创建私有网络，以隔离应用程序和数据。</p>
+<h3 id="aws-cloudfront">AWS CloudFront</h3>
+<p>是一种内容分发网络服务，可帮助用户加速网站和应用程序的访问速度。</p>
+<h3 id="aws-direct-connect">AWS Direct Connect</h3>
+<p>是一种专用网络连接服务，可帮助用户在 AWS 云中建立专用网络连接，以提高数据传输速度和可靠性。</p>
+<h3 id="aws-global-accelerator">AWS Global Accelerator</h3>
+<p>是一种高性能网络加速服务，可帮助用户加速应用程序的访问速度，以提高用户体验。</p>
+<h3 id="aws-route-53">AWS Route 53</h3>
+<p>是一种域名服务，可帮助用户将域名映射到 AWS 资源，如 EC2 实例、S3 存储桶等。</p>
+<h3 id="aws-vpn">AWS VPN</h3>
+<p>是一种虚拟专用网络服务，可帮助用户在 AWS 云中建立安全的 VPN 连接，以保护数据和应用程序。</p>
+<h3 id="aws-transit-gateway">AWS Transit Gateway</h3>
+<p>将 Amazon VPC、AWS 账户和本地网络连接到一个网关中。简化了网络，并且结束了复杂的对等关系。</p>
+<h3 id="aws-api-gateway">AWS API Gateway</h3>
+<p>是一种完全托管的服务，可以帮助开发人员轻松创建、发布、维护、监控和保护任意规模的 API。<br>
+使用 API Gateway，可以创建 RESTful API 和 WebSocket API，以及集成其他 AWS 服务和第三方服务。<br>
+API Gateway 支持容器化和无服务器工作负载，以及 Web 应用程序。</p>
+<h3 id="amazon-guardduty">Amazon GuardDuty</h3>
+<p>一项威胁检测服务，它持续监控 AWS 账户和工作负载的恶意活动，并提供详细的安全检测结果以实现可见性和修复。</p>
+<h3 id="aws-identity-and-access-management-iam">AWS Identity and Access Management (IAM)</h3>
+<p>指定 AWS 中服务和资源的访问权限，集中管理精细权限，并分析访问权限以优化跨 AWS 的权限。</p>
+<h3 id="aws-iam-identity-center-aws-single-sign-on-sso">AWS IAM Identity Center (AWS Single Sign-On / SSO)</h3>
+<p>一项 AWS 托管的身份验证服务，用于集中管理多个 AWS 账户和 SaaS 应用程序的身份验证。</p>
+<h3 id="amazon-inspector">Amazon Inspector</h3>
+<p>一项 AWS 托管的自动化安全漏洞扫描服务。</p>
+<h3 id="aws-key-management-service-kms">AWS Key Management Service (KMS)</h3>
+<p>创建和控制用于对数据进行加密或数字签名的密钥。</p>
+<h3 id="aws-web-application-firewall-waf">AWS Web Application Firewall (WAF)</h3>
+<p>一项 AWS 托管的网络安全服务，用于保护 Web 应用程序免受常见的网络攻击，如 SQL 注入、跨站点脚本等。</p>
+<h3 id="aws-shield">AWS Shield</h3>
+<p>是一项 AWS 托管的安全服务，用于保护 AWS 账户和应用程序免受 DDoS 攻击和其他网络攻击。</p>
+<h3 id="aws-secrets-manager">AWS Secrets Manager</h3>
+<p>是一项 AWS 托管的安全服务，用于存储和管理敏感数据，如数据库凭据、API 密钥等。通过使用 AWS Secrets Manager，可以轻松地管理和<strong>轮换</strong>这些敏感数据，同时确保它们的安全性和保密性。</p>
+<h1 id="速记">速记</h1>
+<p>高可用：服务器部署在不用的区域中，避免单点故障。</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#%E7%9F%A5%E8%AF%86%E7%82%B9">知识点</a><br>
+*
+<ul>
+<li><a href="#%E4%BC%A0%E7%BB%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%BC%8A%E7%AB%AF">传统服务器的弊端</a></li>
+<li><a href="#%E4%BA%91%E8%AE%A1%E7%AE%97%E4%BC%98%E5%8A%BF">云计算优势</a></li>
+<li><a href="#%E6%A6%82%E5%BF%B5%E7%9F%A5%E8%AF%86">概念知识</a></li>
+<li><a href="#%E4%BA%91%E7%A7%8D%E7%B1%BB">云种类</a></li>
+<li><a href="#%E4%BA%91%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%BC%8F">云服务模式</a></li>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E7%A7%8D%E7%B1%BB">服务种类</a></li>
+<li><a href="#%E4%BB%98%E8%B4%B9%E6%A8%A1%E5%BC%8F">付费模式</a></li>
+<li><a href="#capex-vs-opex">CAPEX vs OPEX</a></li>
+<li><a href="#%E4%BA%91%E9%87%87%E7%94%A8%E6%A1%86%E6%9E%B6-caf-cloud-adoption-framework">云采用框架 CAF - Cloud Adoption Framework</a></li>
+<li><a href="#%E8%89%AF%E5%A5%BD%E6%9E%B6%E6%9E%84%E6%A1%86%E6%9E%B6-waf-well-architected-framework">良好架构框架 WAF - well-architected framework</a></li>
+<li><a href="#aws-ec2">AWS EC2</a>
+<ul>
+<li><a href="#%E4%BB%98%E8%B4%B9%E6%A8%A1%E5%BC%8F-2">付费模式</a></li>
+</ul>
+</li>
+<li><a href="#auto-scaling">Auto Scaling</a></li>
+<li><a href="#amazon-lightsail">Amazon LightSail</a></li>
+<li><a href="#amazon-elastic-beanstalk">Amazon Elastic Beanstalk</a></li>
+<li><a href="#amazon-lambda">Amazon Lambda</a></li>
+<li><a href="#aws-batch">AWS Batch</a></li>
+<li><a href="#amazon-elastic-block-store-amazon-ebs">Amazon Elastic Block Store (Amazon EBS)</a></li>
+<li><a href="#amazon-elastic-file-system-amazon-efs">Amazon Elastic File System (Amazon EFS)</a></li>
+<li><a href="#amazon-fsx">Amazon FSx</a></li>
+<li><a href="#amazon-s3">Amazon S3</a></li>
+<li><a href="#amazon-s3-glacier">Amazon S3 Glacier</a></li>
+<li><a href="#amazon-storage-gateway">Amazon Storage Gateway</a></li>
+<li><a href="#amazon-backup">Amazon Backup</a></li>
+<li><a href="#amazon-rds">Amazon RDS</a></li>
+<li><a href="#amazon-aurora">Amazon Aurora</a></li>
+<li><a href="#amazon-dynamodb">Amazon DynamoDB</a></li>
+<li><a href="#amazon-memorydb-for-redis">Amazon MemoryDB for Redis</a></li>
+<li><a href="#amazon-elastic-container-service-amazon-ecs">Amazon Elastic Container Service (Amazon ECS)</a></li>
+<li><a href="#amazon-elastic-kubernetes-service-amazon-eks">Amazon Elastic Kubernetes Service (Amazon EKS)</a></li>
+<li><a href="#amazon-elastic-container-registry-amazon-ecr">Amazon Elastic Container Registry (Amazon ECR)</a></li>
+<li><a href="#amazon-fargate">Amazon Fargate</a></li>
+<li><a href="#aws-application-migration-service">AWS Application Migration Service</a></li>
+<li><a href="#aws-database-migration-service-dms">AWS Database Migration Service (DMS)</a></li>
+<li><a href="#aws-vpc">AWS VPC</a></li>
+<li><a href="#aws-cloudfront">AWS CloudFront</a></li>
+<li><a href="#aws-direct-connect">AWS Direct Connect</a></li>
+<li><a href="#aws-global-accelerator">AWS Global Accelerator</a></li>
+<li><a href="#aws-route-53">AWS Route 53</a></li>
+<li><a href="#aws-vpn">AWS VPN</a></li>
+<li><a href="#aws-transit-gateway">AWS Transit Gateway</a></li>
+<li><a href="#aws-api-gateway">AWS API Gateway</a></li>
+<li><a href="#amazon-guardduty">Amazon GuardDuty</a></li>
+<li><a href="#aws-identity-and-access-management-iam">AWS Identity and Access Management (IAM)</a></li>
+<li><a href="#aws-iam-identity-center-aws-single-sign-on-sso">AWS IAM Identity Center (AWS Single Sign-On / SSO)</a></li>
+<li><a href="#amazon-inspector">Amazon Inspector</a></li>
+<li><a href="#aws-key-management-service-kms">AWS Key Management Service (KMS)</a></li>
+<li><a href="#aws-web-application-firewall-waf">AWS Web Application Firewall (WAF)</a></li>
+<li><a href="#aws-shield">AWS Shield</a></li>
+<li><a href="#aws-secrets-manager">AWS Secrets Manager</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%9F%E8%AE%B0">速记</a></li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://tech.rongtianjie.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://tech.rongtianjie.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+  
+</body>
+
+</html>

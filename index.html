@@ -1,0 +1,349 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Gridea</title>
+<link rel="shortcut icon" href="https://tech.rongtianjie.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://tech.rongtianjie.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://tech.rongtianjie.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Gridea - Atom Feed" href="https://tech.rongtianjie.me/atom.xml">
+
+    
+
+  <meta name="description" content="Stay Hungry. Stay Foolish." />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="https://tech.rongtianjie.me/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="https://tech.rongtianjie.me/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto ">
+      
+        <header class="flex py-16 md:py-32 mt-12 flex-col md:flex-row px-4 md:px-0 animated fadeIn">
+  <div class="flex-1 order-2 md:order-1 md:pr-16">
+    <div class="text-4xl font-bold text-center md:text-left">
+      Gridea
+    </div>
+    <div class="text-xl text-gray-500 mt-4 text-center md:text-left">
+      Stay Hungry. Stay Foolish.
+    </div>
+    
+    
+  </div>
+  <div class="md:mx-8 flex-shrink-0 self-start rounded-full border-4 border-dotted border-transparent hover:border-yellow-50 p-2 w-32 h-32 order-1 md:order-2 mx-auto s3-dotted">
+    <img class="rounded-full object-cover" src="https://tech.rongtianjie.me/images/avatar.png?v=1736996942209" alt="Gridea" width="100%" height="100%">
+  </div>
+</header>
+      
+
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+      <i class="ri-star-line text-orange-200 absolute text-2xl left-0 ml-1 rotate-90"></i>
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://tech.rongtianjie.me/post/How-To-Ask-Questions-The-Smart-Way/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          提问的智慧
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-03-17</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        提问的智慧
+How To Ask Questions The Smart Way
+Copyright © 2001,2006,2014 Eric S. Raymond, Rick Moen
+本指南英文版版权为 Eric S. Raymond...
+      </div>
+      <a href="https://tech.rongtianjie.me/post/How-To-Ask-Questions-The-Smart-Way/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://tech.rongtianjie.me/post-images/How-To-Ask-Questions-The-Smart-Way.jpg" alt="提问的智慧">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://tech.rongtianjie.me/post/windows-xia-visual-studio-libtorch-huan-jing-da-jian/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Windows 下 Visual Studio + Libtorch 环境搭建
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2024-12-19</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        软件准备
+
+Visual Studio
+下载地址
+OpenCV
+
+
+可直接下载预编译版本 下载地址
+下载后选择纯英文解压路径，后续以 D:\opencv 示例
+
+
+Libtorch
+
+
+根据实际情况选择下载版本 下载地址
+下载完成后解压，后...
+      </div>
+      <a href="https://tech.rongtianjie.me/post/windows-xia-visual-studio-libtorch-huan-jing-da-jian/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://tech.rongtianjie.me/post/aws-yun-cong-ye-zhe-ren-zheng-aws-ccp-clf-c02/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          AWS云从业者认证 AWS CCP CLF-C02
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2024-12-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        知识点
+传统服务器的弊端
+
+服务器一次性投入成本大
+安装调试复杂，需要长时间投入
+部署在一个地区，容易受到损坏
+无法弹性扩缩容
+
+云计算优势
+
+按量购买，一次性投入成本低
+安装调试由云厂商提供
+多地域部署购买
+可以弹性扩缩容
+
+概念知识
+
+...
+      </div>
+      <a href="https://tech.rongtianjie.me/post/aws-yun-cong-ye-zhe-ren-zheng-aws-ccp-clf-c02/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://tech.rongtianjie.me/post/a-li-yun-ren-gong-zhi-neng-gao-ji-gong-cheng-shi-acp/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          阿里云人工智能 高级工程师 ACP
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2024-12-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        阿里云PAI（Platform of Artificial Intelligence
+PAI-Studio：
+
+可视化建模工具：提供了一个可视化的界面，用户可以通过拖拽组件来构建机器学习流水线，无需编写代码即可完成数据预处理、模型训练和评估...
+      </div>
+      <a href="https://tech.rongtianjie.me/post/a-li-yun-ren-gong-zhi-neng-gao-ji-gong-cheng-shi-acp/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://tech.rongtianjie.me/post/da-jian-minio-fen-bu-shi-ji-qun-bing-pei-zhi-nginx-jin-xing-fu-zai-jun-heng/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          在 Windows Server 上搭建 MinIO 分布式集群并配置 Nginx 进行负载均衡
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2024-07-20</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        
+随着数据存储需求的不断增长和大量数据的频繁访问，企业需要一个高效、可靠且易于扩展的存储解决方案。MinIO 作为一款高性能的对象存储系统，其速度和可扩展性使其成为许多企业的首选。然而，单节点的存储解决方案在某些高负荷环境下可能无法满足需求...
+      </div>
+      <a href="https://tech.rongtianjie.me/post/da-jian-minio-fen-bu-shi-ji-qun-bing-pei-zhi-nginx-jin-xing-fu-zai-jun-heng/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://tech.rongtianjie.me/post-images/da-jian-minio-fen-bu-shi-ji-qun-bing-pei-zhi-nginx-jin-xing-fu-zai-jun-heng.webp" alt="在 Windows Server 上搭建 MinIO 分布式集群并配置 Nginx 进行负载均衡">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://tech.rongtianjie.me/post/deepai-code-base/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          DeepAi Code Base
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2023-07-29</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        高级代码题库
+1. IOU
+def iou(box, boxes, isMin = False):
+    box_area = (box[2] - box[0]) * (box[3] - box[1])
+    area = (boxes...
+      </div>
+      <a href="https://tech.rongtianjie.me/post/deepai-code-base/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://tech.rongtianjie.me/post/ren-lian-jian-ce-mo-xing-mtcnn/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          人脸检测模型 MTCNN
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-12-18</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        MTCNN (Multi-task Cascaded Convolutional Neural Network) 是一种用于人脸检测的神经网络模型。它是由三个子网络组成的级联模型，每个子网络都被训练来执行特定的任务。
+MTCNN 通常在人脸...
+      </div>
+      <a href="https://tech.rongtianjie.me/post/ren-lian-jian-ce-mo-xing-mtcnn/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://tech.rongtianjie.me/post-images/ren-lian-jian-ce-mo-xing-mtcnn.webp" alt="人脸检测模型 MTCNN">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://tech.rongtianjie.me/post/shen-du-qiang-hua-xue-xi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          深度强化学习
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-12-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        强化学习
+强化学习过程
+强化学习是一种通过试错来学习的机器学习方法。在强化学习中，一个智能体（可以是一个机器人、计算机程序等）在一个环境中进行探索，通过执行动作并观察其后果来学习最优策略。
+强化学习的过程可以分为四个主要步骤：
+
+观察：智能...
+      </div>
+      <a href="https://tech.rongtianjie.me/post/shen-du-qiang-hua-xue-xi/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://tech.rongtianjie.me/post/zi-ran-yu-yan-chu-li-nlp/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          自然语言处理 NLP
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-12-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        GPT
+课件
+
+...
+      </div>
+      <a href="https://tech.rongtianjie.me/post/zi-ran-yu-yan-chu-li-nlp/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://tech.rongtianjie.me/post/auto-encoder-dui-xiang-sheng-cheng/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          图像生成模型
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2022-11-23</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        自编码网络 - AutoEncoder
+自编码网络（Autoencoder）是一种神经网络模型，它的目的是学习原始数据的有效表示。它通过训练一个神经网络来学习一种从高维数据到低维表示的映射，从而达到降维的目的。这个映射的学习过程通常通过最小...
+      </div>
+      <a href="https://tech.rongtianjie.me/post/auto-encoder-dui-xiang-sheng-cheng/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://tech.rongtianjie.me/post-images/auto-encoder-dui-xiang-sheng-cheng.png" alt="图像生成模型">
+    
+  </div>
+  
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+    
+      <a href="https://tech.rongtianjie.me/page/2" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://tech.rongtianjie.me/media/scripts/main.js"></script>
+</body>
+
+</html>

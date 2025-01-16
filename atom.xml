@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://tech.rongtianjie.me</id>
+    <title>Gridea</title>
+    <updated>2025-01-16T03:09:04.506Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://tech.rongtianjie.me"/>
+    <link rel="self" href="https://tech.rongtianjie.me/atom.xml"/>
+    <subtitle>Stay Hungry. Stay Foolish.</subtitle>
+    <logo>https://tech.rongtianjie.me/images/avatar.png</logo>
+    <icon>https://tech.rongtianjie.me/favicon.ico</icon>
+    <rights>All rights reserved 2025, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Windows 下 Visual Studio + Libtorch 环境搭建]]></title>
+        <id>https://tech.rongtianjie.me/post/windows-xia-visual-studio-libtorch-huan-jing-da-jian/</id>
+        <link href="https://tech.rongtianjie.me/post/windows-xia-visual-studio-libtorch-huan-jing-da-jian/">
+        </link>
+        <updated>2024-12-19T06:05:53.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[AWS云从业者认证 AWS CCP CLF-C02]]></title>
+        <id>https://tech.rongtianjie.me/post/aws-yun-cong-ye-zhe-ren-zheng-aws-ccp-clf-c02/</id>
+        <link href="https://tech.rongtianjie.me/post/aws-yun-cong-ye-zhe-ren-zheng-aws-ccp-clf-c02/">
+        </link>
+        <updated>2024-12-12T02:37:49.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[阿里云人工智能 高级工程师 ACP]]></title>
+        <id>https://tech.rongtianjie.me/post/a-li-yun-ren-gong-zhi-neng-gao-ji-gong-cheng-shi-acp/</id>
+        <link href="https://tech.rongtianjie.me/post/a-li-yun-ren-gong-zhi-neng-gao-ji-gong-cheng-shi-acp/">
+        </link>
+        <updated>2024-12-10T05:28:10.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[在 Windows Server 上搭建 MinIO 分布式集群并配置 Nginx 进行负载均衡]]></title>
+        <id>https://tech.rongtianjie.me/post/da-jian-minio-fen-bu-shi-ji-qun-bing-pei-zhi-nginx-jin-xing-fu-zai-jun-heng/</id>
+        <link href="https://tech.rongtianjie.me/post/da-jian-minio-fen-bu-shi-ji-qun-bing-pei-zhi-nginx-jin-xing-fu-zai-jun-heng/">
+        </link>
+        <updated>2024-07-20T04:11:27.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[DeepAi Code Base]]></title>
+        <id>https://tech.rongtianjie.me/post/deepai-code-base/</id>
+        <link href="https://tech.rongtianjie.me/post/deepai-code-base/">
+        </link>
+        <updated>2023-07-29T11:05:12.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[人脸检测模型 MTCNN]]></title>
+        <id>https://tech.rongtianjie.me/post/ren-lian-jian-ce-mo-xing-mtcnn/</id>
+        <link href="https://tech.rongtianjie.me/post/ren-lian-jian-ce-mo-xing-mtcnn/">
+        </link>
+        <updated>2022-12-18T10:16:58.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[深度强化学习]]></title>
+        <id>https://tech.rongtianjie.me/post/shen-du-qiang-hua-xue-xi/</id>
+        <link href="https://tech.rongtianjie.me/post/shen-du-qiang-hua-xue-xi/">
+        </link>
+        <updated>2022-12-08T09:11:22.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[自然语言处理 NLP]]></title>
+        <id>https://tech.rongtianjie.me/post/zi-ran-yu-yan-chu-li-nlp/</id>
+        <link href="https://tech.rongtianjie.me/post/zi-ran-yu-yan-chu-li-nlp/">
+        </link>
+        <updated>2022-12-08T02:00:58.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[图像生成模型]]></title>
+        <id>https://tech.rongtianjie.me/post/auto-encoder-dui-xiang-sheng-cheng/</id>
+        <link href="https://tech.rongtianjie.me/post/auto-encoder-dui-xiang-sheng-cheng/">
+        </link>
+        <updated>2022-11-23T04:21:31.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[YOLO v1-v5]]></title>
+        <id>https://tech.rongtianjie.me/post/yolo-v1v2v3/</id>
+        <link href="https://tech.rongtianjie.me/post/yolo-v1v2v3/">
+        </link>
+        <updated>2022-11-14T06:50:52.000Z</updated>
+    </entry>
+</feed>

@@ -1,0 +1,1010 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>DeepAi Code Base - Gridea</title>
+<link rel="shortcut icon" href="https://tech.rongtianjie.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://tech.rongtianjie.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://tech.rongtianjie.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="DeepAi Code Base - Gridea - Atom Feed" href="https://tech.rongtianjie.me/atom.xml">
+
+    
+
+  <meta name="description" content="高级代码题库
+1. IOU
+def iou(box, boxes, isMin = False):
+    box_area = (box[2] - box[0]) * (box[3] - box[1])
+    area = (boxes..." />
+  <meta property="og:title" content="DeepAi Code Base - Gridea">
+  <meta property="og:description" content="高级代码题库
+1. IOU
+def iou(box, boxes, isMin = False):
+    box_area = (box[2] - box[0]) * (box[3] - box[1])
+    area = (boxes..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://tech.rongtianjie.me/post/deepai-code-base/" />
+  <meta property="og:image" content="https://tech.rongtianjie.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="DeepAi Code Base - Gridea">
+  <meta name="twitter:description" content="高级代码题库
+1. IOU
+def iou(box, boxes, isMin = False):
+    box_area = (box[2] - box[0]) * (box[3] - box[1])
+    area = (boxes...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://tech.rongtianjie.me/post/deepai-code-base/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://tech.rongtianjie.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://tech.rongtianjie.me" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Gridea
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          DeepAi Code Base
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2023-07-29 · 21 min read</div>
+          
+            <a href="https://tech.rongtianjie.me/tag/QURh3Ra9G/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              ML
+            </a>
+          
+            <a href="https://tech.rongtianjie.me/tag/2P2CmTGt3m/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Coding
+            </a>
+          
+            <a href="https://tech.rongtianjie.me/tag/TzGxilfVE/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Python
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h1 id="高级代码题库">高级代码题库</h1>
+<h3 id="1-iou">1. IOU</h3>
+<pre><code class="language-python">def iou(box, boxes, isMin = False):
+    box_area = (box[2] - box[0]) * (box[3] - box[1])
+    area = (boxes[:, 2] - boxes[:, 0]) * (boxes[:, 3] - boxes[:, 1])
+    xx1 = np.maximum(box[0], boxes[:, 0])
+    yy1 = np.maximum(box[1], boxes[:, 1])
+    xx2 = np.minimum(box[2], boxes[:, 2])
+    yy2 = np.minimum(box[3], boxes[:, 3])
+    w = np.maximum(0, xx2 - xx1)
+    h = np.maximum(0, yy2 - yy1)
+    inter = w * h
+    if isMin:
+        ovr = np.true_divide(inter, np.minimum(box_area, area))
+    else:
+        ovr = np.true_divide(inter, (box_area + area - inter))
+    return ovr
+
+if __name__ == '__main__':
+    a = np.array([1,1,11,11])
+    bs = np.array([[1,1,10,10],[11,11,20,20]])
+    print(iou(a,bs))
+</code></pre>
+<h4 id="logic">Logic</h4>
+<p>计算目标框与每个候选框的交并比，<code>isMin</code> 用于控制计算 IOU 时使用的分母是最小面积还是并集面积</p>
+<ol>
+<li>计算目标框的面积</li>
+<li>计算每个候选框的面积</li>
+<li>计算重叠部分坐标得到重叠部分的面积</li>
+<li>使用 <code>np.true_divide</code> 计算 IOU</li>
+</ol>
+<h3 id="2-nms">2. NMS</h3>
+<pre><code class="language-python">def nms(boxes, thresh=0.3, isMin = False):
+    if boxes.shape[0] == 0:
+        return np.array([])
+    _boxes = boxes[(-boxes[:, 4]).argsort()]
+    r_boxes = []
+    while _boxes.shape[0] &gt; 1:
+        a_box = _boxes[0]
+        b_boxes = _boxes[1:]
+        r_boxes.append(a_box)
+        index = np.where(iou(a_box, b_boxes,isMin) &lt; thresh)
+        _boxes = b_boxes[index]
+    if _boxes.shape[0] &gt; 0:
+        r_boxes.append(_boxes[0])
+    return np.stack(r_boxes)
+
+if __name__ == '__main__':
+    bs = np.array([[1, 1, 10, 10, 0.98], [1, 1, 9, 9, 0.8], [9, 8, 13, 20, 0.7], [6, 11, 18, 17, 0.85]])
+    print((-bs[:,4]).argsort())
+    print(nms(bs))
+</code></pre>
+<h4 id="logic-2">Logic</h4>
+<ol>
+<li>将候选框按照置信度从大到小排序</li>
+<li>选取置信度最大的框，将其加入结果集</li>
+<li>计算置信度最大的框与其他框的 IOU，将 IOU 大于阈值的框从候选框中移除</li>
+<li>重复 2、3 步骤，直到候选框为空</li>
+<li>返回结果集</li>
+</ol>
+<h3 id="3-矩形转正方形">3. 矩形转正方形</h3>
+<pre><code class="language-python">def convert_to_square(bbox):
+    square_bbox = bbox.copy()
+    if bbox.shape[0] == 0:
+        return np.array([])
+    h = bbox[:, 3] - bbox[:, 1]
+    w = bbox[:, 2] - bbox[:, 0]
+    max_side = np.maximum(h, w)
+    square_bbox[:, 0] = bbox[:, 0] + w * 0.5 - max_side * 0.5
+    square_bbox[:, 1] = bbox[:, 1] + h * 0.5 - max_side * 0.5
+    square_bbox[:, 2] = square_bbox[:, 0] + max_side
+    square_bbox[:, 3] = square_bbox[:, 1] + max_side
+    return square_bbox
+
+if __name__ == '__main__':
+    box=np.array([[16,36,25,94],[54,62,79,12]])
+    print(convert_to_square(box))
+</code></pre>
+<h4 id="logic-3">Logic</h4>
+<ol>
+<li>计算每个框的宽高</li>
+<li>计算每个框的最大边长</li>
+<li>根据最大边长反推出每个框的左上右下坐标</li>
+</ol>
+<h3 id="4-mtcnn-p网络">4. MTCNN-P网络</h3>
+<pre><code class="language-python">class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.pre_layer = nn.Sequential(
+            nn.Conv2d(3, 10, kernel_size=3, stride=1),  # 10*10*3
+            nn.PReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2,padding=0),  # 5*5*10
+            nn.Conv2d(10, 16, kernel_size=3, stride=1),  # 3*3*16
+            nn.PReLU(),
+            nn.Conv2d(16, 32, kernel_size=3, stride=1),  # 1*1*32
+            nn.PReLU()
+        )
+        self.conv4_1 = nn.Conv2d(32, 2, kernel_size=1, stride=1)
+        self.conv4_2 = nn.Conv2d(32, 4, kernel_size=1, stride=1)
+        self.conv4_3 = nn.Conv2d(32, 10, kernel_size=1, stride=1)
+    def forward(self, x):
+        x = self.pre_layer(x)
+        cls = torch.softmax(self.conv4_1(x),1)
+        bbox = self.conv4_2(x)
+        landmark = self.conv4_3(x)
+        return cls, bbox,landmark
+
+if __name__ == '__main__':
+    data=torch.randn([10,3,12,12])
+    net=Net()
+    out=net(data)
+    print(out[0].shape)
+    print(out[1].shape)
+    print(out[2].shape)
+</code></pre>
+<h4 id="logic-4">Logic</h4>
+<ol>
+<li>使用 <code>nn.Sequential</code> 定义网络结构
+<ol>
+<li>输入 12x12x3</li>
+<li><code>nn.Conv2d</code> 10x10x3</li>
+<li><code>nn.MaxPool2d</code> 5x5x10</li>
+<li><code>nn.Conv2d</code> 3x3x16</li>
+<li><code>nn.Conv2d</code> 1x1x32</li>
+</ol>
+</li>
+<li>分别使用 <code>nn.Conv2d</code> 定义分类、边界、关键点预测层
+<ol>
+<li>分类: <code>nn.Conv2d</code> 1x1x2, <code>torch.softmax</code> 输出概率</li>
+<li>边界框: <code>nn.Conv2d</code> 1x1x4</li>
+<li>关键点: <code>nn.Conv2d</code> 1x1x10</li>
+</ol>
+</li>
+</ol>
+<h3 id="5-centerloss">5. CenterLoss</h3>
+<pre><code class="language-python">class Centerloss(nn.Module):
+    def __init__(self,lambdas,feature_num=2,class_num=10):
+        super(Centerloss,self).__init__()
+        self.lambdas=lambdas
+        self.center = nn.Parameter(torch.randn(class_num, feature_num), requires_grad=True)
+    def forward(self, feature, label):
+        # [0, 0, 1, 0, 1] -&gt; [[c0], [c0], [c1], [c0], [c1]]
+        center_exp = self.center.index_select(dim=0, index=label.long())
+        # 统计每个不重复的 label 元素出现的次数
+        count = torch.histc(label, bins=int(max(label).item() + 1), min=0, max=int(max(label).item()))
+        count_exp = count.index_select(dim=0, index=label.long())
+        # 求完每个样本和每类中心点的欧氏距离后，得到的距离需要处于每个类别的样本数
+        loss = self.lambdas/2 * torch.mean(torch.div(torch.sum(torch.pow(feature - center_exp, 2), dim=1), count_exp))
+        return loss
+
+if __name__ == '__main__':
+    data = torch.tensor([[3, 4], [5, 6], [7, 8], [9, 8], [6, 5]], dtype=torch.float32)
+    label = torch.tensor([0, 0, 1, 0, 1], dtype=torch.float32)
+    center_loss=Centerloss(2,2,5)
+    print(center_loss(data,label))
+    print(list(center_loss.parameters()))
+</code></pre>
+<h4 id="logic-5">Logic</h4>
+<ol>
+<li><code>nn.Parameter</code> 定义中心点参数</li>
+<li><code>torch.index_select</code> 根据标签选择中心点</li>
+<li><code>torch.histc</code> 统计每个类别的样本数量</li>
+<li><code>torch.index_select</code> 根据标签选择每个类别的样本数量</li>
+<li>根据 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mrow><mi>c</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>N</mi></mrow></mfrac><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></msubsup><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi>c</mi><msub><mi>y</mi><mi>i</mi></msub></msub><mi mathvariant="normal">∣</mi><msubsup><mi mathvariant="normal">∣</mi><mn>2</mn><mn>2</mn></msubsup></mrow></mrow><annotation encoding="application/x-tex">L_{center}=\frac{1}{2N}\sum_{i=1}^{m}{||x_i-c_{y_i}||_2^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">∣</span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.03588em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4518920000000004em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24810799999999997em;"><span></span></span></span></span></span></span></span></span></span></span> 计算损失</li>
+</ol>
+<h3 id="6-arcfaceloss">6. ArcFaceLoss</h3>
+<pre><code class="language-python">class ArcNet(nn.Module):
+    def __init__(self,feature_dim=2,cls_dim=10):
+        super().__init__()
+        self.W=nn.Parameter(torch.randn(feature_dim,cls_dim).cuda(),requires_grad=True)
+    def forward(self, feature,m=0.5,s=64):
+        # 特征维度标准化
+        x = F.normalize(feature, dim=1)#shape=【100，2】
+        w = F.normalize(self.W, dim=0)#shape=【2，10】
+        # ||x|| * ||w||
+        s = torch.sqrt(torch.sum(torch.pow(x, 2))) * torch.sqrt(torch.sum(torch.pow(w, 2)))
+        cosa = torch.matmul(x, w)/s
+        a=torch.acos(cosa)
+        arcsoftmax = torch.exp(
+            s * torch.cos(a + m)) / (torch.sum(torch.exp(s * cosa), dim=1, keepdim=True) - torch.exp(
+            s * cosa) + torch.exp(s * torch.cos(a + m)))
+        return arcsoftmax
+
+if __name__ == '__main__':
+    arc=ArcNet(feature_dim=2,cls_dim=10)
+    feature=torch.randn(100,2).cuda()
+    out=arc(feature)
+    print(feature.shape)
+    print(out.shape)
+</code></pre>
+<h4 id="logic-6">Logic</h4>
+<ol>
+<li><code>nn.Parameter</code> 定义隔离带向量</li>
+<li><code>F.normalize</code> 对特征向量和隔离带向量进行标准化</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mo>=</mo><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mo>∗</mo><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>w</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">s = ||x|| * ||w||</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mord">∣</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord">∣</span><span class="mord">∣</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>o</mi><mi>s</mi><mi>α</mi><mo>=</mo><mfrac><mrow><mi>x</mi><mi>w</mi></mrow><mi>s</mi></mfrac></mrow><annotation encoding="application/x-tex">cos\alpha = \frac{xw}{s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.040392em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>=</mo><mi>a</mi><mi>r</mi><mi>c</mi><mi>c</mi><mi>o</mi><mi>s</mi><mo>(</mo><mi>c</mi><mi>o</mi><mi>s</mi><mi>α</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">a = arccos(cos\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>r</mi><mi>c</mi><mi>s</mi><mi>o</mi><mi>f</mi><mi>t</mi><mi>m</mi><mi>a</mi><mi>x</mi><mo>=</mo><mfrac><msup><mi>e</mi><mrow><mi>s</mi><mi>c</mi><mi>o</mi><mi>s</mi><mo>(</mo><mi>a</mi><mo>+</mo><mi>m</mi><mo>)</mo></mrow></msup><mrow><mo>∑</mo><msup><mi>e</mi><mrow><mi>s</mi><mi>c</mi><mi>o</mi><mi>s</mi><mi>α</mi></mrow></msup><mo>−</mo><msup><mi>e</mi><mrow><mi>s</mi><mi>c</mi><mi>o</mi><mi>s</mi><mi>α</mi></mrow></msup><mo>+</mo><msup><mi>e</mi><mrow><mi>s</mi><mi>c</mi><mi>o</mi><mi>s</mi><mo>(</mo><mi>a</mi><mo>+</mo><mi>m</mi><mo>)</mo></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">arcsoftmax = \frac{e^{scos(a+m)}}{\sum{e^{scos\alpha}}-e^{scos\alpha}+e^{scos(a+m)}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">c</span><span class="mord mathdefault">s</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">t</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.631132em;vertical-align:-0.5604319999999999em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0707em;"><span style="top:-2.614575em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop op-symbol small-op mtight" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5935428571428571em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span></span></span></span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5935428571428571em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span></span></span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8220357142857143em;"><span style="top:-2.8220357142857138em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5357142857142856em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">a</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight">m</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9667142857142857em;"><span style="top:-2.966714285714285em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5357142857142856em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">a</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight">m</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5604319999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></li>
+</ol>
+<h3 id="7-yolov3上下采样层">7. YOLOv3上下采样层</h3>
+<pre><code class="language-python"># 上采样层
+class UpsampleLayer(torch.nn.Module):
+    def __init__(self):
+        super(UpsampleLayer, self).__init__()
+
+    def forward(self, x):
+        return F.interpolate(x, scale_factor=2, mode='nearest')
+# 定义卷积层
+class ConvolutionalLayer(torch.nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size, stride, padding, bias=False):
+        super(ConvolutionalLayer, self).__init__()
+        self.sub_module = torch.nn.Sequential(
+            torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding, bias=bias),
+            torch.nn.BatchNorm2d(out_channels),
+            torch.nn.LeakyReLU(0.1)
+        )
+    def forward(self, x):
+        return self.sub_module(x)
+# 下采样层
+class DownsamplingLayer(torch.nn.Module):
+    def __init__(self, in_channels, out_channels):
+        super(DownsamplingLayer, self).__init__()
+        self.sub_module = torch.nn.Sequential(
+            ConvolutionalLayer(in_channels, out_channels, 3, 2, 1)
+        )
+    def forward(self, x):
+        return self.sub_module(x)
+</code></pre>
+<h4 id="logic-7">Logic</h4>
+<ol>
+<li>上采样层 <code>F.interpolate</code> 2倍上采样</li>
+<li>卷积层 / 下采样层
+<ol>
+<li><code>nn.Conv2d</code> 3x3x3</li>
+<li><code>nn.BatchNorm2d</code></li>
+<li><code>nn.LeakyReLU</code> 负斜率0.1</li>
+</ol>
+</li>
+</ol>
+<h3 id="8-yolov3残差模块-卷积模块">8. YOLOv3残差模块、卷积模块</h3>
+<pre><code class="language-python">#定义卷积层
+class ConvolutionalLayer(torch.nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size, stride, padding, bias=False):
+        super(ConvolutionalLayer, self).__init__()
+        self.sub_module = torch.nn.Sequential(
+            torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding, bias=bias),
+            torch.nn.BatchNorm2d(out_channels),
+            torch.nn.LeakyReLU(0.1)
+        )
+    def forward(self, x):
+        return self.sub_module(x)
+
+#定义残差结构
+class ResidualLayer(torch.nn.Module):
+    def __init__(self, in_channels):
+        super(ResidualLayer, self).__init__()
+        self.sub_module = torch.nn.Sequential(
+            ConvolutionalLayer(in_channels, in_channels // 2, 1, 1, 0),
+            ConvolutionalLayer(in_channels // 2, in_channels, 3, 1, 1),
+        )
+    def forward(self, x):
+        return x + self.sub_module(x)
+
+#定义卷积块
+class ConvolutionalSet(torch.nn.Module):
+    def __init__(self, in_channels, out_channels):
+        super(ConvolutionalSet, self).__init__()
+        self.sub_module = torch.nn.Sequential(
+            ConvolutionalLayer(in_channels, out_channels, 1, 1, 0),
+            ConvolutionalLayer(out_channels, in_channels, 3, 1, 1),
+
+            ConvolutionalLayer(in_channels, out_channels, 1, 1, 0),
+            ConvolutionalLayer(out_channels, in_channels, 3, 1, 1),
+
+            ConvolutionalLayer(in_channels, out_channels, 1, 1, 0),
+        )
+    def forward(self, x):
+        return self.sub_module(x)
+</code></pre>
+<h3 id="9-yolov3-dataset采样">9. YOLOv3 dataset采样</h3>
+<pre><code class="language-python">class cfg:
+    IMG_HEIGHT = 416
+    IMG_WIDTH = 416
+    CLASS_NUM = 10
+    # &quot;anchor box是对coco数据集聚类获得&quot;
+    ANCHORS_GROUP_KMEANS = {
+        52: [[10, 13], [16, 30], [33, 23]],
+        26: [[30, 61], [62, 45], [59, 119]],
+        13: [[116, 90], [156, 198], [373, 326]]}
+    ANCHORS_GROUP = {
+        13: [[360, 360], [360, 180], [180, 360]],
+        26: [[180, 180], [180, 90], [90, 180]],
+        52: [[90, 90], [90, 45], [45, 90]]}
+    ANCHORS_GROUP_AREA = {
+        13: [x * y for x, y in ANCHORS_GROUP[13]],
+        26: [x * y for x, y in ANCHORS_GROUP[26]],
+        52: [x * y for x, y in ANCHORS_GROUP[52]],
+    }
+
+transforms = torchvision.transforms.Compose([
+    torchvision.transforms.ToTensor(),
+    torchvision.transforms.Normalize(
+    mean = [0.485, 0.456, 0.406],
+    std = [0.229, 0.224, 0.225])
+])
+
+def one_hot(cls_num, i):
+    b = np.zeros(cls_num)
+    b[i] = 1.
+    return b
+
+class MyDataset(Dataset):
+
+    def __init__(self,label_path,image_dir):
+        self.label_apth=label_path
+        self.image_dir=image_dir
+        with open(self.label_apth) as f:
+            self.dataset = f.readlines()
+
+    def __len__(self):
+        return len(self.dataset)
+
+    def __getitem__(self, index):
+        labels = {}
+        line = self.dataset[index]
+        strs = line.split()
+        _img_data = Image.open(os.path.join(self.image_dir, strs[0]))
+        img_data = transforms(_img_data)
+        _boxes = np.array(float(x) for x in strs[1:])
+        _boxes = np.array(list(map(float, strs[1:])))
+        boxes = np.split(_boxes, len(_boxes) // 5)
+
+        for feature_size, anchors in cfg.ANCHORS_GROUP.items():
+            labels[feature_size] = np.zeros(shape=(feature_size, feature_size, 3, 5 + cfg.CLASS_NUM))
+            for box in boxes:
+                cls, cx, cy, w, h = box
+                cx_offset, cx_index = math.modf(cx * feature_size / cfg.IMG_WIDTH)
+                cy_offset, cy_index = math.modf(cy * feature_size / cfg.IMG_WIDTH)
+                for i, anchor in enumerate(anchors):
+                    anchor_area = cfg.ANCHORS_GROUP_AREA[feature_size][i]
+                    p_w, p_h = w / anchor[0], h / anchor[1]
+                    # tw=np.log(w / anchor[0])
+                    p_area = w * h
+                    iou = min(p_area, anchor_area) / max(p_area, anchor_area)
+                    labels[feature_size][int(cy_index), int(cx_index), i] = np.array(
+                        [iou, cx_offset, cy_offset, np.log(p_w), np.log(p_h), *one_hot(cfg.CLASS_NUM, int(cls))])#10,i
+        return labels[13], labels[26], labels[52], img_data
+
+if __name__ == '__main__':
+    x=one_hot(10,2)
+    print(x)
+    LABEL_FILE_PATH = &quot;data/person_label.txt&quot;
+    IMG_BASE_DIR = &quot;data/&quot;
+
+    data = MyDataset(LABEL_FILE_PATH,IMG_BASE_DIR)
+    dataloader = DataLoader(data,2,shuffle=True)
+    for target_13, target_26, target_52, img_data in dataloader:
+        print(target_13.shape)
+        print(target_26.shape)
+        print(target_52.shape)
+        print(img_data.shape)
+</code></pre>
+<h3 id="10-yolov5-focus模块">10. YOLOv5 Focus模块</h3>
+<pre><code class="language-python">class Focus(nn.Module):
+
+    def __init__(self, c1, c2, k=1):
+        super(Focus, self).__init__()
+        self.conv = nn.Conv2d(c1 * 4, c2, k, 1)
+
+    def forward(self, x):  # x(b,c,w,h) -&gt; y(b,4c,w/2,h/2)
+        return self.conv(torch.cat([x[..., ::2, ::2], x[..., 1::2, ::2], x[..., ::2, 1::2], x[..., 1::2, 1::2]], 1))
+
+if __name__ == '__main__':
+    data=torch.randn([1,64,224,224])
+    focus=Focus(64,64)
+    out=focus(data)
+    print(out.shape)
+</code></pre>
+<h3 id="11-使用6层全连接实现-autoencoder-主网络代码">11. 使用6层全连接实现 AutoEncoder 主网络代码</h3>
+<pre><code class="language-python">class AutoEncoder(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.aenet=nn.Sequential(
+            nn.Linear(784,512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+            nn.Linear(512,256),
+            nn.BatchNorm1d(256),
+            nn.ReLU(),
+            nn.Linear(256, 128),
+            nn.BatchNorm1d(128),
+            nn.ReLU(),
+            nn.Linear(128, 256),
+            nn.BatchNorm1d(256),
+            nn.ReLU(),
+            nn.Linear(256, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+            nn.Linear(512, 784),
+            nn.Sigmoid()
+        )
+    def forward(self,x):
+        return self.aenet(x)
+
+if __name__ == '__main__':
+    data=torch.randn(10,784)
+    ae=AutoEncoder()
+    out=ae(data)
+    print(out.shape)
+</code></pre>
+<h3 id="12-三层全连接分别实现原始gan的d网络和g网络">12. 三层全连接分别实现原始GAN的D网络和G网络</h3>
+<pre><code class="language-python">class D_Net(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.dnet=nn.Sequential(
+            nn.Linear(784,512),
+            nn.ReLU(),
+            nn.Linear(512,256),
+            nn.ReLU(),
+            nn.Linear(256,1),
+            nn.Sigmoid()
+        )
+    def forward(self,x):
+        return self.dnet(x)
+
+class G_Net(nn.Module):
+    def __init__(self):
+        super(G_Net, self).__init__()
+        self.gnet=nn.Sequential(
+            nn.Linear(128,256),
+            nn.ReLU(),
+            nn.Linear(256,512),
+            nn.ReLU(),
+            nn.Linear(512,784)
+        )
+    def forward(self,x):
+        return self.gnet(x)
+</code></pre>
+<h3 id="13-unet-主干模型代码">13. Unet 主干模型代码</h3>
+<pre><code class="language-python">class CNNLayer(torch.nn.Module):
+    def __init__(self, C_in, C_out):
+        super(CNNLayer, self).__init__()
+        self.layer = torch.nn.Sequential(
+            torch.nn.Conv2d(C_in, C_out, 3, 1, 1),
+            torch.nn.BatchNorm2d(C_out),
+            torch.nn.Dropout(0.3),
+            torch.nn.LeakyReLU(),
+            torch.nn.Conv2d(C_out, C_out, 3, 1, 1),
+            torch.nn.BatchNorm2d(C_out),
+            torch.nn.Dropout(0.4),
+            torch.nn.LeakyReLU()
+        )
+
+    def forward(self, x):
+        return self.layer(x)
+
+class DownSampling(torch.nn.Module):
+    def __init__(self, C):
+        super(DownSampling, self).__init__()
+        self.layer = torch.nn.Sequential(
+            torch.nn.Conv2d(C, C, 3, 2, 1),
+            torch.nn.LeakyReLU()
+        )
+
+    def forward(self, x):
+        return self.layer(x)
+
+class UpSampling(torch.nn.Module):
+    def __init__(self, C):
+        super(UpSampling, self).__init__()
+        self.C = torch.nn.Conv2d(C, C // 2, 1, 1)#逐点卷积
+
+    def forward(self, x, r):
+        up = F.interpolate(x, scale_factor=2, mode='nearest')#临近插值
+        x = self.C(up)
+        return torch.cat((x, r), 1)
+
+class MainNet(torch.nn.Module):
+    def __init__(self):
+        super(MainNet, self).__init__()
+        self.C1 = CNNLayer(3, 64)
+        self.D1 = DownSampling(64)#128
+        self.C2 = CNNLayer(64, 128)
+        self.D2 = DownSampling(128)#64
+        self.C3 = CNNLayer(128, 256)
+        self.D3 = DownSampling(256)#32
+        self.C4 = CNNLayer(256, 512)
+        self.D4 = DownSampling(512)#16
+        self.C5 = CNNLayer(512, 1024)
+        self.U1 = UpSampling(1024)#32
+        self.C6 = CNNLayer(1024, 512)
+        self.U2 = UpSampling(512)#64
+        self.C7 = CNNLayer(512, 256)
+        self.U3 = UpSampling(256)#128
+        self.C8 = CNNLayer(256, 128)
+        self.U4 = UpSampling(128)#256
+        self.C9 = CNNLayer(128, 64)
+        self.pre = torch.nn.Conv2d(64, 3, 3, 1, 1)#转换通道
+        self.Th = torch.nn.Sigmoid()
+
+    def forward(self, x):
+        R1 = self.C1(x)
+        R2 = self.C2(self.D1(R1))#128
+        R3 = self.C3(self.D2(R2))#64
+        R4 = self.C4(self.D3(R3))#32
+        Y1 = self.C5(self.D4(R4))#16
+        O1 = self.C6(self.U1(Y1, R4))#32
+        O2 = self.C7(self.U2(O1, R3))#64
+        O3 = self.C8(self.U3(O2, R2))#128
+        O4 = self.C9(self.U4(O3, R1))#256
+        return self.Th(self.pre(O4))#[3,256,256]
+
+if __name__ == '__main__':
+    a = torch.randn(2, 3, 416, 416).cuda()
+    net = MainNet().cuda()
+    print(net(a).shape)
+</code></pre>
+<h3 id="14-unet模型中对图像转正方形并居中处理">14. Unet模型中对图像转正方形并居中处理</h3>
+<pre><code class="language-python">def scale_img(img,scale_side):
+    w1, h1 = img.size
+    img.thumbnail((scale_side, scale_side))
+    w2, h2 = img.size
+    s1 = w1 / w2
+    s2 = h1 / h2
+    s = (s1 + s2) / 2
+    bg_img = pimg.new(&quot;RGB&quot;, (scale_side, scale_side), (0, 0, 0))
+    if w2 == scale_side:
+        bg_img.paste(img, (0, int((scale_side - h2) / 2)))
+    elif w2 == scale_side:
+        bg_img.paste(img, (int((scale_side - w2) / 2), 0))
+    else:
+        bg_img.paste(img, (int((scale_side - w2) / 2), (int((scale_side - h2) / 2))))
+    return bg_img
+
+if __name__ == '__main__':
+    image=&quot;img.png&quot;
+    new_img=scale_img(pimg.open(image),416)
+    new_img.show()
+</code></pre>
+<h4 id="logic-8">Logic</h4>
+<p>按照缩放的边长对图片等比例缩放，并转成正方形居中</p>
+<ol>
+<li>获得图片宽高</li>
+<li><code>img.thumbnail((scale_side, scale_side))</code>根据最大边长缩放,图像只会被缩小，不会变大</li>
+<li>获得缩放后的宽高和比例</li>
+<li>新建一张 scale_side*scale_side 的空白黑色背景图片、</li>
+<li>根据缩放后的宽高粘贴图像到背景图上</li>
+</ol>
+<h3 id="15-u2net中掩码分割图和原图合并成透明背景图">15. U²net中掩码分割图和原图合并成透明背景图</h3>
+<pre><code class="language-python">def crop(img_file, mask_file):
+    img_array = np.array(Image.open(img_file))
+    mask = np.array(Image.open(mask_file))
+    res = np.concatenate((img_array, mask[:, :, [0]]), -1)
+    img = Image.fromarray(res.astype('uint8'), mode='RGBA')
+    return img
+
+if __name__ == &quot;__main__&quot;:
+    img_file = &quot;1.jpg&quot;
+    mask_root = &quot;2.png&quot;
+    res = crop(img_file,mask_root)
+    print(res.mode)
+    res.show()
+    res.save(&quot;./{}.png&quot;.format(&quot;result&quot;))
+</code></pre>
+<h3 id="16-音频数据使用μ律压缩方法进行编解码">16. 音频数据使用μ律压缩方法进行编解码</h3>
+<pre><code class="language-python">waveform, sample_rate = torchaudio.load(filename)
+
+#先查看当前的音频最大最小值，因为编码重构音频需要将输入的原音频数据规范到[-1,1]之间
+print(&quot;Min of waveform:{}\nMax of waveform:{}\nMean of waveform:{}&quot;.format(waveform.min(),waveform.max(),waveform.mean()))
+
+#如果音频数据本身就是在[-1,1]之间，就不需要进行缩放了
+def normalize(tensor):
+    # 减去均值，然后缩放到[-1,1]
+    tensor_minusmean = tensor - tensor.mean()
+    return tensor_minusmean/tensor_minusmean.abs().max()
+
+# waveform = normalize(waveform)
+
+
+#先对音频数据进行编码，输入范围是[-1,1]，输出范围是[0,255]
+transformed = torchaudio.transforms.MuLawEncoding()(waveform)
+print(&quot;Shape of transformed waveform: {}&quot;.format(transformed.size()))
+plt.figure()
+plt.plot(transformed[0, :].numpy())
+plt.show()
+
+#然后对编码后的音频数据解码重构，输入范围是[0,255]，输出范围和原音频范围一致
+reconstructed = torchaudio.transforms.MuLawDecoding()(transformed)
+print(&quot;Shape of recovered waveform: {}&quot;.format(reconstructed.size()))
+plt.figure()
+plt.plot(reconstructed[0, :].numpy())
+plt.show()
+
+#最后将重构的音频数据和原始音频数据进行比较，查看误差率
+err = ((waveform - reconstructed).abs() / waveform.abs()).median()
+print(&quot;Median relative difference between original and MuLaw reconstucted signals: {:.2%}&quot;.format(err))
+</code></pre>
+<h3 id="17-使用-pytorch-创建-embedding-对象并一次性输出顺序和倒序的值">17. 使用 pytorch 创建 Embedding 对象，并一次性输出顺序和倒序的值</h3>
+<pre><code class="language-python">import torch
+from torch import nn
+a = nn.Embedding(4,5)
+print(a.weight)
+idx = torch.tensor([[0,1,2,3],[3,2,1,0]])
+print(a(idx))
+</code></pre>
+<h3 id="18-根据-torchtext-的-glove-词向量包里的-china-和-beijing-的关系计算出-japan-对应的词">18. 根据 torchtext 的 GloVe 词向量包里的 &quot;china&quot; 和 &quot;beijing&quot; 的关系计算出 &quot;japan&quot; 对应的词</h3>
+<pre><code class="language-python">gv = torchtext.vocab.GloVe(name=&quot;6B&quot;,dim=50)#一个词用50个长度的向量来表示
+
+def get_wv(word):
+    return gv.vectors[gv.stoi[word]]
+
+def sim_10(word,n = 10):
+    aLL_dists = [(gv.itos[i],torch.dist(word,w)) for i,w in enumerate(gv.vectors)]
+    return sorted(aLL_dists,key=lambda t: t[1])[:n]
+
+def answer(w1,w2,w3):
+    print(&quot;{0}：{1}=={2}：{3}&quot;.format(w1,w2,w3,&quot;x&quot;))
+    w4 = get_wv(w3)-get_wv(w1)+get_wv(w2)
+    print(sim_10(w4))
+    return sim_10(w4)[0][0]#拿出10组中的第一组的第一个值，也就是距离最小的词
+print(&quot;x=&quot;+answer(&quot;china&quot;,&quot;beijing&quot;,&quot;japan&quot;))
+</code></pre>
+<h3 id="19-完成q-learning回报矩阵的更新">19. 完成Q-Learning回报矩阵的更新</h3>
+<pre><code class="language-python">import numpy as np
+r_array = np.array([
+    [-1, -1, -1, -1, 0, -1],
+    [-1, -1, -1, 0, -1, 100],
+    [-1, -1, -1, 0, -1, -1],
+    [-1, 0, 0, -1, 0, -1],
+    [0, -1, -1, 0, -1, 100],
+    [-1, 0, -1, -1, 0, 100]], dtype=np.float32)
+q_array = np.zeros(36).reshape(6,6)
+alpha, gamma = 1, 0.8
+for epoch in range(20):
+    for i in range(6):
+        for j in range(6):
+            if r_array[i][j]&gt;=0:
+                q_array[i][j]=q_array[i][j]+alpha*(r_array[i][j]+gamma*max(q_array[j])-q_array[i][j])
+            else:
+                continue
+print((q_array/np.max(q_array)*100).round())
+</code></pre>
+<h3 id="20-使用-tensorflow1x-框架完成输入输出-x-y-和参数-w-b-的图构建并且使用会话输出参数-w-的值">20. 使用 TensorFlow1.x 框架完成输入输出 x、y 和参数 w、b 的图构建，并且使用会话输出参数 w 的值</h3>
+<pre><code class="language-python">import tensorflow as tf
+
+print(tf.__version__)
+#图当中是看不到真实数据的，只有数据的形状和类型
+x = tf.placeholder(dtype=tf.float32,shape=[None,784])
+y = tf.placeholder(dtype=tf.float32,shape=[None,10])
+w= tf.Variable(tf.random_normal(shape=[784,10],stddev=0.01,dtype=tf.float32))
+b = tf.Variable(tf.zeros(shape=[10],dtype=tf.float32))
+
+print(x)
+print(w)
+
+#  初始化图中全局变量的操作.
+init = tf.global_variables_initializer()
+#会话当中可以看到真实数据
+with tf.Session() as sess:
+    sess.run(init)
+    print(sess.run(w))
+</code></pre>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#%E9%AB%98%E7%BA%A7%E4%BB%A3%E7%A0%81%E9%A2%98%E5%BA%93">高级代码题库</a><br>
+*
+<ul>
+<li><a href="#1-iou">1. IOU</a>
+<ul>
+<li><a href="#logic">Logic</a></li>
+</ul>
+</li>
+<li><a href="#2-nms">2. NMS</a>
+<ul>
+<li><a href="#logic-2">Logic</a></li>
+</ul>
+</li>
+<li><a href="#3-%E7%9F%A9%E5%BD%A2%E8%BD%AC%E6%AD%A3%E6%96%B9%E5%BD%A2">3. 矩形转正方形</a>
+<ul>
+<li><a href="#logic-3">Logic</a></li>
+</ul>
+</li>
+<li><a href="#4-mtcnn-p%E7%BD%91%E7%BB%9C">4. MTCNN-P网络</a>
+<ul>
+<li><a href="#logic-4">Logic</a></li>
+</ul>
+</li>
+<li><a href="#5-centerloss">5. CenterLoss</a>
+<ul>
+<li><a href="#logic-5">Logic</a></li>
+</ul>
+</li>
+<li><a href="#6-arcfaceloss">6. ArcFaceLoss</a>
+<ul>
+<li><a href="#logic-6">Logic</a></li>
+</ul>
+</li>
+<li><a href="#7-yolov3%E4%B8%8A%E4%B8%8B%E9%87%87%E6%A0%B7%E5%B1%82">7. YOLOv3上下采样层</a>
+<ul>
+<li><a href="#logic-7">Logic</a></li>
+</ul>
+</li>
+<li><a href="#8-yolov3%E6%AE%8B%E5%B7%AE%E6%A8%A1%E5%9D%97-%E5%8D%B7%E7%A7%AF%E6%A8%A1%E5%9D%97">8. YOLOv3残差模块、卷积模块</a></li>
+<li><a href="#9-yolov3-dataset%E9%87%87%E6%A0%B7">9. YOLOv3 dataset采样</a></li>
+<li><a href="#10-yolov5-focus%E6%A8%A1%E5%9D%97">10. YOLOv5 Focus模块</a></li>
+<li><a href="#11-%E4%BD%BF%E7%94%A86%E5%B1%82%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%AE%9E%E7%8E%B0-autoencoder-%E4%B8%BB%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%A0%81">11. 使用6层全连接实现 AutoEncoder 主网络代码</a></li>
+<li><a href="#12-%E4%B8%89%E5%B1%82%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%88%86%E5%88%AB%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%A7%8Bgan%E7%9A%84d%E7%BD%91%E7%BB%9C%E5%92%8Cg%E7%BD%91%E7%BB%9C">12. 三层全连接分别实现原始GAN的D网络和G网络</a></li>
+<li><a href="#13-unet-%E4%B8%BB%E5%B9%B2%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81">13. Unet 主干模型代码</a></li>
+<li><a href="#14-unet%E6%A8%A1%E5%9E%8B%E4%B8%AD%E5%AF%B9%E5%9B%BE%E5%83%8F%E8%BD%AC%E6%AD%A3%E6%96%B9%E5%BD%A2%E5%B9%B6%E5%B1%85%E4%B8%AD%E5%A4%84%E7%90%86">14. Unet模型中对图像转正方形并居中处理</a>
+<ul>
+<li><a href="#logic-8">Logic</a></li>
+</ul>
+</li>
+<li><a href="#15-u2net%E4%B8%AD%E6%8E%A9%E7%A0%81%E5%88%86%E5%89%B2%E5%9B%BE%E5%92%8C%E5%8E%9F%E5%9B%BE%E5%90%88%E5%B9%B6%E6%88%90%E9%80%8F%E6%98%8E%E8%83%8C%E6%99%AF%E5%9B%BE">15. U²net中掩码分割图和原图合并成透明背景图</a></li>
+<li><a href="#16-%E9%9F%B3%E9%A2%91%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%CE%BC%E5%BE%8B%E5%8E%8B%E7%BC%A9%E6%96%B9%E6%B3%95%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%A7%A3%E7%A0%81">16. 音频数据使用μ律压缩方法进行编解码</a></li>
+<li><a href="#17-%E4%BD%BF%E7%94%A8-pytorch-%E5%88%9B%E5%BB%BA-embedding-%E5%AF%B9%E8%B1%A1%E5%B9%B6%E4%B8%80%E6%AC%A1%E6%80%A7%E8%BE%93%E5%87%BA%E9%A1%BA%E5%BA%8F%E5%92%8C%E5%80%92%E5%BA%8F%E7%9A%84%E5%80%BC">17. 使用 pytorch 创建 Embedding 对象，并一次性输出顺序和倒序的值</a></li>
+<li><a href="#18-%E6%A0%B9%E6%8D%AE-torchtext-%E7%9A%84-glove-%E8%AF%8D%E5%90%91%E9%87%8F%E5%8C%85%E9%87%8C%E7%9A%84-china-%E5%92%8C-beijing-%E7%9A%84%E5%85%B3%E7%B3%BB%E8%AE%A1%E7%AE%97%E5%87%BA-japan-%E5%AF%B9%E5%BA%94%E7%9A%84%E8%AF%8D">18. 根据 torchtext 的 GloVe 词向量包里的 &quot;china&quot; 和 &quot;beijing&quot; 的关系计算出 &quot;japan&quot; 对应的词</a></li>
+<li><a href="#19-%E5%AE%8C%E6%88%90q-learning%E5%9B%9E%E6%8A%A5%E7%9F%A9%E9%98%B5%E7%9A%84%E6%9B%B4%E6%96%B0">19. 完成Q-Learning回报矩阵的更新</a></li>
+<li><a href="#20-%E4%BD%BF%E7%94%A8-tensorflow1x-%E6%A1%86%E6%9E%B6%E5%AE%8C%E6%88%90%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA-x-y-%E5%92%8C%E5%8F%82%E6%95%B0-w-b-%E7%9A%84%E5%9B%BE%E6%9E%84%E5%BB%BA%E5%B9%B6%E4%B8%94%E4%BD%BF%E7%94%A8%E4%BC%9A%E8%AF%9D%E8%BE%93%E5%87%BA%E5%8F%82%E6%95%B0-w-%E7%9A%84%E5%80%BC">20. 使用 TensorFlow1.x 框架完成输入输出 x、y 和参数 w、b 的图构建，并且使用会话输出参数 w 的值</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://tech.rongtianjie.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://tech.rongtianjie.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+  
+</body>
+
+</html>
